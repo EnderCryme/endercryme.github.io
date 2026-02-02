@@ -72,7 +72,7 @@ function update() {
   if (!jumpKey) {
      jumpPressed = false;
    }
-   
+   /* --- Fast-fall (flèche bas) --- */
    if (fallKey && !onGround) {
      vy += gravity * 2.5;
      vy = Math.min(vy, maxFallSpeed);
@@ -80,12 +80,6 @@ function update() {
 
   /* --- Gravité --- */
   vy += gravity;
-
-   /* --- Fast-fall (flèche bas) --- */
-   if (fallkey && !onGround) {
-     vy += gravity * 2.5;
-     vy = Math.min(vy, maxFallSpeed);
-   }
 
   /* --- Application des vitesses --- */
   x += vx;
