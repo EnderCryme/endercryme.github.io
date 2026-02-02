@@ -20,10 +20,10 @@ const gravity = 0.5;
 const jumpPower = 12;
 const maxFallSpeed = 15;
 
-const jumpKey = keys["z"] || keys["arrowup"] || keys[" "];
-const leftkey = keys["q"] || keys["arrowleft"];
-const rightkey = keys["d"] || keys["rightkey"];
-const fallkey = keys["s"] || keys["arrowdown"],
+const leftKey  = keys["q"] || keys["arrowleft"];
+const rightKey = keys["d"] || keys["arrowright"];
+const jumpKey  = keys["z"] || keys[" "] || keys["arrowup"];
+const fallKey  = keys["s"] || keys["arrowdown"];
 
 let onGround = false;
 let jumpPressed = false;
@@ -54,8 +54,8 @@ document.addEventListener("keyup", (e) => {
 function update() {
 
   /* --- Déplacement horizontal --- */
-  if (leftkey) vx -= speed;
-  if (rightkey) vx += speed;
+  if (leftKey) vx -= speed;
+  if (rightKey) vx += speed;
 
   /* Limite vitesse */
   vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
@@ -72,6 +72,10 @@ function update() {
 
   if (!jumpKey) {
      jumpPressed = false;
+   }
+   
+   if (fallKey && !onGround) {
+     vy += gravity * 2.5;
    }
 
   /* --- Gravité --- */
