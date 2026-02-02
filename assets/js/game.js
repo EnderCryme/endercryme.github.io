@@ -1,6 +1,7 @@
 /* =========================
    RÉFÉRENCES DOM
 ========================= */
+const game = document.getElementById("game");
 const player = document.getElementById("player");
 const controlsHint = document.getElementById("controls-hint");
 const interactHint = document.getElementById("interact-hint");
@@ -31,17 +32,15 @@ let controlsVisible = true;
 const keys = {};
 
 document.addEventListener("keydown", (e) => {
-  keys[e.key.toLowerCase()] = true;
+  const key = e.key.toLowerCase();
+  keys[key] = true;
 
-  // Cache l'indication des contrôles au premier input
   if (controlsHint && controlsVisible) {
     controlsHint.style.opacity = "0";
-    controlsHint.style.transition = "opacity 0.4s ease";
     controlsVisible = false;
   }
 
-  // Empêche le scroll avec les flèches / espace
-  if (["arrowup", "arrowdown", "arrowleft", "arrowright", " "].includes(e.key.toLowerCase())) {
+  if (["arrowup", "arrowdown", "arrowleft", "arrowright", " "].includes(key)) {
     e.preventDefault();
   }
 });
@@ -54,7 +53,7 @@ document.addEventListener("keyup", (e) => {
    GAME LOOP
 ========================= */
 function update() {
-  /* --- Lecture des inputs (temps réel) --- */
+  /* --- Lecture inputs --- */
   const leftKey  = keys["q"] || keys["arrowleft"];
   const rightKey = keys["d"] || keys["arrowright"];
   const jumpKey  = keys["z"] || keys[" "] || keys["arrowup"];
@@ -64,10 +63,7 @@ function update() {
   if (leftKey) vx -= speed;
   if (rightKey) vx += speed;
 
-  /* Limite vitesse */
   vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
-
-  /* Friction (sol / air) */
   vx *= onGround ? 0.8 : 0.98;
 
   /* --- Saut --- */
@@ -76,12 +72,9 @@ function update() {
     onGround = false;
     jumpPressed = true;
   }
+  if (!jumpKey) jumpPressed = false;
 
-  if (!jumpKey) {
-    jumpPressed = false;
-  }
-
-  /* --- Fast-fall --- */
+  /* --- Fast fall --- */
   if (fallKey && !onGround) {
     vy += gravity * 2.5;
     vy = Math.min(vy, maxFallSpeed);
@@ -90,7 +83,7 @@ function update() {
   /* --- Gravité --- */
   vy += gravity;
 
-  /* --- Application des vitesses --- */
+  /* --- Application --- */
   x += vx;
   y += vy;
 
@@ -103,49 +96,46 @@ function update() {
   }
 
   /* --- Squash & stretch --- */
-  if (!onGround) {
-    player.style.transform = "scale(1.05, 0.95)";
-  } else {
-    player.style.transform = "scale(1, 1)";
-  }
+  player.style.transform = onGround
+    ? "scale(1,1)"
+    : "scale(1.05,0.95)";
 
-  /* --- Position DOM --- */
+  /* --- Position joueur --- */
   player.style.left = x + "px";
   player.style.top = y + "px";
 
-  /* --- Indication contrôles --- */
+  /* --- Hint contrôles --- */
   if (controlsHint && controlsVisible) {
-      controlsHint.style.left = (x + player.offsetWidth / 2) + "px";
-      controlsHint.style.top = y + "px";
+    controlsHint.style.left = x + player.offsetWidth / 2 + "px";
+    controlsHint.style.top = y + "px";
   }
 
-  /* --- Collisions portes --- */
-  doors.forEach((door) => {
-    if (isColliding(player, door)) {
-      openDoor(door);
+  /* =========================
+     INDICATION [ E ] PORTES ✅
+  ========================= */
+  let nearDoor = false;
+
+  doors.forEach(door => {
+    if (isNear(player, door)) {
+      const doorRect = door.getBoundingClientRect();
+      const gameRect = game.getBoundingClientRect();
+
+      interactHint.style.left =
+        doorRect.left - gameRect.left + doorRect.width / 2 + "px";
+
+      interactHint.style.top =
+        doorRect.top - gameRect.top + "px";
+
+      interactHint.style.opacity = "1";
+      nearDoor = true;
     }
   });
 
-  requestAnimationFrame(update);
-   let nearDoor = false;
+  if (!nearDoor) {
+    interactHint.style.opacity = "0";
+  }
 
-   doors.forEach(door => {
-     if (isNear(player, door)) {
-       interactHint.style.opacity = "1";
-   
-       interactHint.style.left =
-         door.offsetLeft + door.offsetWidth / 2 + "px";
-   
-       interactHint.style.top =
-         door.offsetTop + "px";
-   
-       nearDoor = true;
-     }
-   });
-   
-   if (!nearDoor) {
-     interactHint.style.opacity = "0";
-}
+  requestAnimationFrame(update);
 }
 
 /* =========================
@@ -166,13 +156,7 @@ function isColliding(a, b) {
 /* =========================
    PORTES
 ========================= */
-let doorOpened = false;
-
-function openDoor(door) {
-  if (doorOpened) return;
-}
-
-function isNear(a, b, distance = 40) {
+function isNear(a, b, distance = 50) {
   const ax = a.offsetLeft + a.offsetWidth / 2;
   const ay = a.offsetTop + a.offsetHeight / 2;
 
