@@ -19,8 +19,14 @@ const maxSpeed = 5;
 const gravity = 0.5;
 const jumpPower = 12;
 
+const jumpKey = keys["z"] || keys["arrowup"] || keys[" "];
+const leftkey = keys["q"] || keys["arrowleft"];
+const rightkey = keys["d"] || keys["rightkey"];
+const fallkey = keys["s" || keys["arrowdown"],
+
 let onGround = false;
 let jumpPressed = false;
+let controlsVisible = true;
 
 /* =========================
    INPUTS
@@ -30,11 +36,11 @@ const keys = {};
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
 
-  /* Masquer l'aide au premier input */
-  if (controlsHint && controlsHint.style.opacity !== "0") {
-     controlsHint.style.left = (x + player.offsetWidth / 2) + "px";
-     controlsHint.style.top = (y - 10) + "px";
-   }
+  if (controlsHint && controlsVisible) {
+    controlsHint.style.opacity = "0";
+    controlsHint.style.transition = "opacity 0.4s ease";
+    controlsVisible = false;
+  }
 });
 
 document.addEventListener("keyup", (e) => {
@@ -47,8 +53,8 @@ document.addEventListener("keyup", (e) => {
 function update() {
 
   /* --- Déplacement horizontal --- */
-  if (keys["q"]) vx -= speed;
-  if (keys["d"]) vx += speed;
+  if (leftkey) vx -= speed;
+  if (rightkey) vx += speed;
 
   /* Limite vitesse */
   vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
@@ -57,18 +63,23 @@ function update() {
   vx *= onGround ? 0.8 : 0.98;
 
   /* --- Saut --- */
-  if (keys["z"] && onGround && !jumpPressed) {
-    vy = -jumpPower;
-    onGround = false;
-    jumpPressed = true;
-  }
+  if (jumpKey && onGround && !jumpPressed) {
+     vy = -jumpPower;
+     onGround = false;
+     jumpPressed = true;
+   }
 
-  if (!keys["z"]) {
-    jumpPressed = false;
-  }
+  if (!jumpKey) {
+     jumpPressed = false;
+   }
 
   /* --- Gravité --- */
   vy += gravity;
+
+   /* --- Fast-fall (flèche bas) --- */
+   if (fallkey && !onGround) {
+     vy += gravity * 2.5;
+   }
 
   /* --- Application des vitesses --- */
   x += vx;
@@ -93,6 +104,11 @@ function update() {
   player.style.left = x + "px";
   player.style.top = y + "px";
 
+  if (controlsHint && controlsVisible) {
+     controlsHint.style.left = (x + player.offsetWidth / 2) + "px";
+     controlsHint.style.top = (y - 10) + "px";
+   }
+   
   /* --- Collisions portes --- */
   doors.forEach((door) => {
     if (isColliding(player, door)) {
