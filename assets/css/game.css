@@ -35,7 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  border-radius: 6px 6px 10px 10px;
   border: 3px solid #111;
   box-shadow:
     inset -3px -3px 0 #b5c7e6,
