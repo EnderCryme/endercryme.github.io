@@ -3,18 +3,16 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  background: #1b1b1b;
   overflow: hidden;
 }
 
 /* Indication ZQSD */
 #controls-hint {
   position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
   pointer-events: none;
   font-family: monospace;
+  transform: translate(-50%, -100%);
+  z-index: 10;
 }
 
 /* Lignes de touches */
@@ -48,9 +46,9 @@
 }
 
 @keyframes pulse {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-3px); }
-  100% { transform: translateY(0); }
+  0%   { transform: translate(-50%, -100%) translateY(0); }
+  50%  { transform: translate(-50%, -100%) translateY(-6px); }
+  100% { transform: translate(-50%, -100%) translateY(0); }
 }
 
 /* Personnage */
