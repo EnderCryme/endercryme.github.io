@@ -18,6 +18,7 @@ const speed = 0.6;
 const maxSpeed = 5;
 const gravity = 0.5;
 const jumpPower = 12;
+const maxFallSpeed = 15;
 
 const jumpKey = keys["z"] || keys["arrowup"] || keys[" "];
 const leftkey = keys["q"] || keys["arrowleft"];
@@ -79,6 +80,7 @@ function update() {
    /* --- Fast-fall (flèche bas) --- */
    if (fallkey && !onGround) {
      vy += gravity * 2.5;
+     vy = Math.min(vy, maxFallSpeed);
    }
 
   /* --- Application des vitesses --- */
