@@ -1,7 +1,13 @@
+/* =========================
+   RÉFÉRENCES DOM
+========================= */
 const player = document.getElementById("player");
 const doors = document.querySelectorAll(".door");
 const controlsHint = document.getElementById("controls-hint");
 
+/* =========================
+   POSITION & PHYSIQUE
+========================= */
 let x = 100;
 let y = window.innerHeight * 0.6;
 
@@ -12,44 +18,63 @@ const speed = 0.6;
 const maxSpeed = 5;
 const gravity = 0.5;
 const jumpPower = 12;
-let onGround = false;
 
+let onGround = false;
+let jumpPressed = false;
+
+/* =========================
+   INPUTS
+========================= */
 const keys = {};
 
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
+
+  /* Masquer l'aide au premier input */
+  if (controlsHint) {
+    controlsHint.style.opacity = "0";
+    controlsHint.style.pointerEvents = "none";
+  }
 });
 
 document.addEventListener("keyup", (e) => {
   keys[e.key.toLowerCase()] = false;
 });
 
+/* =========================
+   GAME LOOP
+========================= */
 function update() {
 
-  /* Déplacements horizontaux */
+  /* --- Déplacement horizontal --- */
   if (keys["q"]) vx -= speed;
   if (keys["d"]) vx += speed;
 
-  /* Limite de vitesse */
+  /* Limite vitesse */
   vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
 
-  /* Friction */
-  vx *= 0.85;
+  /* Friction (différente sol / air) */
+  vx *= onGround ? 0.8 : 0.98;
 
-  /* Saut */
-  if (keys["z"] && onGround) {
+  /* --- Saut --- */
+  if (keys["z"] && onGround && !jumpPressed) {
     vy = -jumpPower;
     onGround = false;
+    jumpPressed = true;
   }
 
-  /* Gravité */
+  if (!keys["z"]) {
+    jumpPressed = false;
+  }
+
+  /* --- Gravité --- */
   vy += gravity;
 
-  /* Position */
+  /* --- Application des vitesses --- */
   x += vx;
   y += vy;
 
-  /* Sol */
+  /* --- Sol --- */
   const ground = window.innerHeight * 0.7;
   if (y >= ground) {
     y = ground;
@@ -57,15 +82,30 @@ function update() {
     onGround = true;
   }
 
-  /* Application */
+  /* --- Squash & stretch --- */
+  if (!onGround) {
+    player.style.transform = "scale(1.05, 0.95)";
+  } else {
+    player.style.transform = "scale(1, 1)";
+  }
+
+  /* --- Position DOM --- */
   player.style.left = x + "px";
   player.style.top = y + "px";
+
+  /* --- Collisions portes --- */
+  doors.forEach((door) => {
+    if (isColliding(player, door)) {
+      openDoor(door);
+    }
+  });
 
   requestAnimationFrame(update);
 }
 
-update();
-
+/* =========================
+   COLLISIONS
+========================= */
 function isColliding(a, b) {
   const r1 = a.getBoundingClientRect();
   const r2 = b.getBoundingClientRect();
@@ -78,15 +118,19 @@ function isColliding(a, b) {
   );
 }
 
-setInterval(() => {
-  doors.forEach(door => {
-    if (isColliding(player, door)) {
-      alert("Ouverture : " + door.dataset.section);
-    }
-  });
-}, 100);
+/* =========================
+   PORTES
+========================= */
+let doorOpened = false;
 
-document.addEventListener("keydown", () => {
-  controlsHint.style.opacity = "0";
-  controlsHint.style.transition = "opacity 0.5s";
-});
+function openDoor(door) {
+  if (doorOpened) return;
+
+  doorOpened = true;
+  alert("Ouverture : " + door.dataset.section);
+}
+
+/* =========================
+   LANCEMENT
+========================= */
+update();
