@@ -170,9 +170,6 @@ let doorOpened = false;
 
 function openDoor(door) {
   if (doorOpened) return;
-
-  doorOpened = true;
-  alert("Ouverture : " + door.dataset.section);
 }
 
 function isNear(a, b, distance = 40) {
