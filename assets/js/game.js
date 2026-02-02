@@ -114,8 +114,8 @@ function update() {
 
   /* --- Indication contrôles --- */
   if (controlsHint && controlsVisible) {
-    controlsHint.style.left = (x + player.offsetWidth / 2) + "px";
-    controlsHint.style.top = (y - 10) + "px";
+      controlsHint.style.left = (x + player.offsetWidth / 2) + "px";
+      controlsHint.style.top = y + "px";
   }
 
   /* --- Collisions portes --- */
