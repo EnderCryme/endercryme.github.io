@@ -1,18 +1,50 @@
-.screen {
+/* Zone de jeu */
+#game {
+  position: relative;
   width: 100vw;
   height: 100vh;
-  display: none;
+  background: #1b1b1b;
+  overflow: hidden;
 }
 
-.screen.active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Indication ZQSD */
+#controls-hint {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  animation: blink 1.5s infinite;
 }
 
+@keyframes blink {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+/* Personnage */
 #player {
   width: 40px;
   height: 40px;
-  background: red;
+  background: #4caf50;
   position: absolute;
+  top: 60%;
+  left: 10%;
 }
+
+/* Portes */
+.door {
+  width: 50px;
+  height: 70px;
+  background: #795548;
+  position: absolute;
+  bottom: 20%;
+}
+
+/* Alignement des portes */
+.door:nth-child(4) { left: 30%; }
+.door:nth-child(5) { left: 45%; }
+.door:nth-child(6) { left: 60%; }
+.door:nth-child(7) { left: 75%; }
