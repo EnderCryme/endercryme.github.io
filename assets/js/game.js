@@ -25,18 +25,23 @@ let jumpPressed = false;
 let controlsVisible = true;
 
 /* =========================
-   INPUTS
+   INPUTS (ÉTAT GLOBAL)
 ========================= */
 const keys = {};
-
 
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
 
+  // Cache l'indication des contrôles au premier input
   if (controlsHint && controlsVisible) {
     controlsHint.style.opacity = "0";
     controlsHint.style.transition = "opacity 0.4s ease";
     controlsVisible = false;
+  }
+
+  // Empêche le scroll avec les flèches / espace
+  if (["arrowup", "arrowdown", "arrowleft", "arrowright", " "].includes(e.key.toLowerCase())) {
+    e.preventDefault();
   }
 });
 
@@ -48,13 +53,12 @@ document.addEventListener("keyup", (e) => {
    GAME LOOP
 ========================= */
 function update() {
-  console.log(keys);
-
+  /* --- Lecture des inputs (temps réel) --- */
   const leftKey  = keys["q"] || keys["arrowleft"];
   const rightKey = keys["d"] || keys["arrowright"];
   const jumpKey  = keys["z"] || keys[" "] || keys["arrowup"];
   const fallKey  = keys["s"] || keys["arrowdown"];
-   
+
   /* --- Déplacement horizontal --- */
   if (leftKey) vx -= speed;
   if (rightKey) vx += speed;
@@ -62,24 +66,25 @@ function update() {
   /* Limite vitesse */
   vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
 
-  /* Friction (différente sol / air) */
+  /* Friction (sol / air) */
   vx *= onGround ? 0.8 : 0.98;
 
   /* --- Saut --- */
   if (jumpKey && onGround && !jumpPressed) {
-     vy = -jumpPower;
-     onGround = false;
-     jumpPressed = true;
-   }
+    vy = -jumpPower;
+    onGround = false;
+    jumpPressed = true;
+  }
 
   if (!jumpKey) {
-     jumpPressed = false;
-   }
-   /* --- Fast-fall (flèche bas) --- */
-   if (fallKey && !onGround) {
-     vy += gravity * 2.5;
-     vy = Math.min(vy, maxFallSpeed);
-   }
+    jumpPressed = false;
+  }
+
+  /* --- Fast-fall --- */
+  if (fallKey && !onGround) {
+    vy += gravity * 2.5;
+    vy = Math.min(vy, maxFallSpeed);
+  }
 
   /* --- Gravité --- */
   vy += gravity;
@@ -107,11 +112,12 @@ function update() {
   player.style.left = x + "px";
   player.style.top = y + "px";
 
+  /* --- Indication contrôles --- */
   if (controlsHint && controlsVisible) {
-     controlsHint.style.left = (x + player.offsetWidth / 2) + "px";
-     controlsHint.style.top = (y - 10) + "px";
-   }
-   
+    controlsHint.style.left = (x + player.offsetWidth / 2) + "px";
+    controlsHint.style.top = (y - 10) + "px";
+  }
+
   /* --- Collisions portes --- */
   doors.forEach((door) => {
     if (isColliding(player, door)) {
