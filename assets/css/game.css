@@ -33,7 +33,7 @@
   color: #000;
   font-size: 18px;
   font-weight: bold;
-
+  animation: pulse 1.5s infinite ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,6 +45,12 @@
     3px 3px 0 #111;
 
   image-rendering: pixelated;
+}
+
+@keyframes pulse {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
 }
 
 /* Personnage */
