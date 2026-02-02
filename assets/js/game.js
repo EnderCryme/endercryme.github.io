@@ -6,6 +6,46 @@ const doors = document.querySelectorAll(".door");
 const controlsHint = document.getElementById("controls-hint");
 
 /* =========================
+   INPUTS
+========================= */
+const keys = {};
+let controlsVisible = true;
+
+const blockedKeys = [
+  " ",
+  "arrowup",
+  "arrowdown",
+  "arrowleft",
+  "arrowright"
+];
+
+document.addEventListener("keydown", (e) => {
+  const key = e.key.toLowerCase();
+
+  if (blockedKeys.includes(key)) {
+    e.preventDefault(); // 🚫 empêche le scroll
+  }
+
+  keys[key] = true;
+
+  if (controlsHint && controlsVisible) {
+    controlsHint.style.opacity = "0";
+    controlsHint.style.transition = "opacity 0.4s ease";
+    controlsVisible = false;
+  }
+});
+
+document.addEventListener("keyup", (e) => {
+  const key = e.key.toLowerCase();
+
+  if (blockedKeys.includes(key)) {
+    e.preventDefault();
+  }
+
+  keys[key] = false;
+});
+
+/* =========================
    POSITION & PHYSIQUE
 ========================= */
 let x = 100;
@@ -20,68 +60,47 @@ const gravity = 0.5;
 const jumpPower = 12;
 const maxFallSpeed = 15;
 
-const jumpKey = keys["z"] || keys["arrowup"] || keys[" "];
-const leftkey = keys["q"] || keys["arrowleft"];
-const rightkey = keys["d"] || keys["rightkey"];
-const fallkey = keys["s" || keys["arrowdown"],
-
 let onGround = false;
 let jumpPressed = false;
-let controlsVisible = true;
-
-/* =========================
-   INPUTS
-========================= */
-const keys = {};
-
-document.addEventListener("keydown", (e) => {
-  keys[e.key.toLowerCase()] = true;
-
-  if (controlsHint && controlsVisible) {
-    controlsHint.style.opacity = "0";
-    controlsHint.style.transition = "opacity 0.4s ease";
-    controlsVisible = false;
-  }
-});
-
-document.addEventListener("keyup", (e) => {
-  keys[e.key.toLowerCase()] = false;
-});
 
 /* =========================
    GAME LOOP
 ========================= */
 function update() {
 
+  /* --- Inputs logiques --- */
+  const leftKey  = keys["q"] || keys["arrowleft"];
+  const rightKey = keys["d"] || keys["arrowright"];
+  const jumpKey  = keys["z"] || keys[" "] || keys["arrowup"];
+  const fallKey  = keys["s"] || keys["arrowdown"];
+
   /* --- Déplacement horizontal --- */
-  if (leftkey) vx -= speed;
-  if (rightkey) vx += speed;
+  if (leftKey) vx -= speed;
+  if (rightKey) vx += speed;
 
-  /* Limite vitesse */
   vx = Math.max(-maxSpeed, Math.min(maxSpeed, vx));
-
-  /* Friction (différente sol / air) */
   vx *= onGround ? 0.8 : 0.98;
 
   /* --- Saut --- */
   if (jumpKey && onGround && !jumpPressed) {
-     vy = -jumpPower;
-     onGround = false;
-     jumpPressed = true;
-   }
+    vy = -jumpPower;
+    onGround = false;
+    jumpPressed = true;
+  }
 
   if (!jumpKey) {
-     jumpPressed = false;
-   }
+    jumpPressed = false;
+  }
 
   /* --- Gravité --- */
   vy += gravity;
 
-   /* --- Fast-fall (flèche bas) --- */
-   if (fallkey && !onGround) {
-     vy += gravity * 2.5;
-     vy = Math.min(vy, maxFallSpeed);
-   }
+  /* --- Fast-fall --- */
+  if (fallKey && !onGround) {
+    vy += gravity * 2.5;
+  }
+
+  vy = Math.min(vy, maxFallSpeed);
 
   /* --- Application des vitesses --- */
   x += vx;
@@ -96,21 +115,20 @@ function update() {
   }
 
   /* --- Squash & stretch --- */
-  if (!onGround) {
-    player.style.transform = "scale(1.05, 0.95)";
-  } else {
-    player.style.transform = "scale(1, 1)";
-  }
+  player.style.transform = onGround
+    ? "scale(1, 1)"
+    : "scale(1.05, 0.95)";
 
   /* --- Position DOM --- */
   player.style.left = x + "px";
   player.style.top = y + "px";
 
+  /* --- Position aide ZQSD --- */
   if (controlsHint && controlsVisible) {
-     controlsHint.style.left = (x + player.offsetWidth / 2) + "px";
-     controlsHint.style.top = (y - 10) + "px";
-   }
-   
+    controlsHint.style.left = (x + player.offsetWidth / 2) + "px";
+    controlsHint.style.top = (y - 10) + "px";
+  }
+
   /* --- Collisions portes --- */
   doors.forEach((door) => {
     if (isColliding(player, door)) {
