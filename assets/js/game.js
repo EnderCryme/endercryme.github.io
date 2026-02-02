@@ -23,7 +23,7 @@ const maxFallSpeed = 15;
 const jumpKey = keys["z"] || keys["arrowup"] || keys[" "];
 const leftkey = keys["q"] || keys["arrowleft"];
 const rightkey = keys["d"] || keys["rightkey"];
-const fallkey = keys["s" || keys["arrowdown"],
+const fallkey = keys["s"] || keys["arrowdown"],
 
 let onGround = false;
 let jumpPressed = false;
