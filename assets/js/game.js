@@ -20,11 +20,6 @@ const gravity = 0.5;
 const jumpPower = 12;
 const maxFallSpeed = 15;
 
-const leftKey  = keys["q"] || keys["arrowleft"];
-const rightKey = keys["d"] || keys["arrowright"];
-const jumpKey  = keys["z"] || keys[" "] || keys["arrowup"];
-const fallKey  = keys["s"] || keys["arrowdown"];
-
 let onGround = false;
 let jumpPressed = false;
 let controlsVisible = true;
@@ -33,6 +28,10 @@ let controlsVisible = true;
    INPUTS
 ========================= */
 const keys = {};
+const leftKey  = keys["q"] || keys["arrowleft"];
+const rightKey = keys["d"] || keys["arrowright"];
+const jumpKey  = keys["z"] || keys[" "] || keys["arrowup"];
+const fallKey  = keys["s"] || keys["arrowdown"];
 
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
@@ -76,6 +75,7 @@ function update() {
    
    if (fallKey && !onGround) {
      vy += gravity * 2.5;
+     vy = Math.min(vy, maxFallSpeed);
    }
 
   /* --- Gravité --- */
