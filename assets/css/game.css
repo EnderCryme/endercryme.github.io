@@ -15,6 +15,16 @@
   z-index: 10;
 }
 
+#interact-hint {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+
+  transform: translate(-50%, -120%);
+  z-index: 10;
+}
+
 /* Lignes de touches */
 .key-row {
   display: flex;
