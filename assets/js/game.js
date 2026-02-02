@@ -28,10 +28,7 @@ let controlsVisible = true;
    INPUTS
 ========================= */
 const keys = {};
-const leftKey  = keys["q"] || keys["arrowleft"];
-const rightKey = keys["d"] || keys["arrowright"];
-const jumpKey  = keys["z"] || keys[" "] || keys["arrowup"];
-const fallKey  = keys["s"] || keys["arrowdown"];
+
 
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
@@ -52,6 +49,12 @@ document.addEventListener("keyup", (e) => {
 ========================= */
 function update() {
   console.log(keys);
+
+  const leftKey  = keys["q"] || keys["arrowleft"];
+  const rightKey = keys["d"] || keys["arrowright"];
+  const jumpKey  = keys["z"] || keys[" "] || keys["arrowup"];
+  const fallKey  = keys["s"] || keys["arrowdown"];
+   
   /* --- Déplacement horizontal --- */
   if (leftKey) vx -= speed;
   if (rightKey) vx += speed;
