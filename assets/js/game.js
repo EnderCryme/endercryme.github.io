@@ -2,8 +2,9 @@
    RÉFÉRENCES DOM
 ========================= */
 const player = document.getElementById("player");
-const doors = document.querySelectorAll(".door");
 const controlsHint = document.getElementById("controls-hint");
+const interactHint = document.getElementById("interact-hint");
+const doors = document.querySelectorAll(".door");
 
 /* =========================
    POSITION & PHYSIQUE
@@ -126,6 +127,25 @@ function update() {
   });
 
   requestAnimationFrame(update);
+   let nearDoor = false;
+
+   doors.forEach(door => {
+     if (isNear(player, door)) {
+       interactHint.style.opacity = "1";
+   
+       interactHint.style.left =
+         door.offsetLeft + door.offsetWidth / 2 + "px";
+   
+       interactHint.style.top =
+         door.offsetTop + "px";
+   
+       nearDoor = true;
+     }
+   });
+   
+   if (!nearDoor) {
+     interactHint.style.opacity = "0";
+}
 }
 
 /* =========================
@@ -153,6 +173,16 @@ function openDoor(door) {
 
   doorOpened = true;
   alert("Ouverture : " + door.dataset.section);
+}
+
+function isNear(a, b, distance = 40) {
+  const ax = a.offsetLeft + a.offsetWidth / 2;
+  const ay = a.offsetTop + a.offsetHeight / 2;
+
+  const bx = b.offsetLeft + b.offsetWidth / 2;
+  const by = b.offsetTop + b.offsetHeight / 2;
+
+  return Math.hypot(ax - bx, ay - by) < distance;
 }
 
 /* =========================
