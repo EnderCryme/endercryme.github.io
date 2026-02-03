@@ -606,9 +606,14 @@ body.modal-open {
 .timeline-item.expanded .timeline-content {
     width: 100%;
     max-width: 1000px;
-    margin: 0 auto;
+    
+    /* Centrage horizontal et marges verticales */
+    margin: 2rem auto 6rem auto; /* 6rem en bas pour être sûr que le contenu n'est pas coupé */
+    
     max-height: none;
     border-radius: 20px;
+    position: relative;
+    height: auto; /* S'assure que la div grandit avec le contenu */
 }
 
 .timeline-item.expanded .timeline-date {
