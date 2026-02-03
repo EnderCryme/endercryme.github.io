@@ -1,0 +1,152 @@
+<div class="timeline-item">
+    <div class="timeline-content">
+        <button class="btn-close" onclick="toggleProject(this)">✕</button>
+
+        <div class="project-image">
+            <img src="assets/images/music.jpg" alt="RL Standard Cells">
+        </div>
+
+        <div class="project-info">
+            <h3>
+                <span class="lang-text" data-lang="fr">Optimisation RL sur Standard Cells</span>
+                <span class="lang-text" data-lang="en" style="display: none;">RL Optimization on Standard Cells</span>
+            </h3>
+            <p class="project-subtitle">IA & EDA • 2025</p>
+
+            <div class="project-description">
+                <p class="lang-text" data-lang="fr">
+                    Outil d'optimisation automatique du dimensionnement des transistors (Sizing) par 
+                    Apprentissage par Renforcement.
+                </p>
+                <p class="lang-text" data-lang="en" style="display: none;">
+                    Automatic transistor sizing optimization tool using Reinforcement Learning.
+                </p>
+            </div>
+
+            <div class="card-buttons">
+                <button class="btn-expand" onclick="toggleProject(this)">
+                    <span class="lang-text" data-lang="fr">Voir l'Architecture & Détails →</span>
+                    <span class="lang-text" data-lang="en" style="display: none;">View Architecture & Details →</span>
+                </button>
+                <a href="https://github.com/EnderCryme/5A-Projet-Optimisation-de-Standard-Cells" class="btn-github" target="_blank">
+                    <svg class="icon"><use href="#icon-github"/></svg>
+                    Code
+                </a>
+            </div>
+
+            <div class="project-details">
+
+                <div class="detail-section">
+                    <h4>
+                        🏗️ 
+                        <span class="lang-text" data-lang="fr">Architecture Globale du Système</span>
+                        <span class="lang-text" data-lang="en" style="display: none;">Global System Architecture</span>
+                    </h4>
+                    
+                    <p class="lang-text" data-lang="fr" style="margin-bottom: 20px;">
+                        L'architecture suit une approche modulaire stricte divisée en 4 couches, séparant l'interface utilisateur des calculs intensifs (Simulations SPICE & IA).
+                    </p>
+                    <p class="lang-text" data-lang="en" style="display: none;" style="margin-bottom: 20px;">
+                        The architecture follows a strict modular approach divided into 4 layers, separating the user interface from intensive calculations (SPICE Simulations & AI).
+                    </p>
+
+                    <div style="text-align: center; margin-bottom: 30px; background: white; padding: 10px; border-radius: 8px;">
+                        <img src="assets/images/projects/ai-architecture.png" alt="Architecture Diagram" style="max-width: 100%; height: auto; border-radius: 4px;">
+                    </div>
+
+                    <div class="architecture-layers" style="display: grid; gap: 20px;">
+
+                        <div class="layer-card" style="border-left: 4px solid #d5e8d4; background: rgba(213, 232, 212, 0.1); padding: 15px; border-radius: 0 4px 4px 0;">
+                            <h5 style="color: #4a7a4a; margin-top: 0;">
+                                🖥️ Frontend : Interface (GUI)
+                            </h5>
+                            <p class="lang-text" data-lang="fr" style="font-size: 0.9em;">
+                                Développée en <strong>PyQt6</strong>. Tableau de bord interactif permettant la configuration dynamique des PDKs et la visualisation temps réel des courbes de Loss/Reward via <code>pyqtgraph</code>.
+                            </p>
+                            <p class="lang-text" data-lang="en" style="display: none;" style="font-size: 0.9em;">
+                                Developed in <strong>PyQt6</strong>. Interactive dashboard allowing dynamic PDK configuration and real-time visualization of Loss/Reward curves via <code>pyqtgraph</code>.
+                            </p>
+                        </div>
+
+                        <div class="layer-card" style="border-left: 4px solid #dae8fc; background: rgba(218, 232, 252, 0.1); padding: 15px; border-radius: 0 4px 4px 0;">
+                            <h5 style="color: #4c688b; margin-top: 0;">
+                                ⚡ Middleware : Gestion Asynchrone
+                            </h5>
+                            <p class="lang-text" data-lang="fr" style="font-size: 0.9em;">
+                                Empêche le gel de l'interface (Freeze) grâce aux <strong>QThread Workers</strong>. Sépare le thread UI des calculs lourds (TrainingWorker & InferenceWorker).
+                            </p>
+                            <p class="lang-text" data-lang="en" style="display: none;" style="font-size: 0.9em;">
+                                Prevents UI freezing thanks to <strong>QThread Workers</strong>. Separates the UI thread from heavy calculations (TrainingWorker & InferenceWorker).
+                            </p>
+                        </div>
+
+                        <div class="layer-card highlight-loop" style="border: 2px solid #ffcc99; background: rgba(255, 204, 153, 0.05); padding: 15px; border-radius: 8px; position: relative;">
+                            
+                            <div style="position: absolute; top: -10px; right: 10px; background: #e67e22; color: white; font-size: 0.7em; padding: 2px 8px; border-radius: 10px; font-weight: bold;">
+                                <span class="lang-text" data-lang="fr">🔄 Cœur d'Apprentissage</span>
+                                <span class="lang-text" data-lang="en" style="display: none;">🔄 Learning Core</span>
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <h5 style="color: #d35400; margin-top: 0;">
+                                    🧠 Backend IA : Agent & Environnement
+                                </h5>
+                                <ul style="font-size: 0.9em; padding-left: 20px; color: #ccc;">
+                                    <li class="lang-text" data-lang="fr"><strong>Agent PPO :</strong> (Stable-Baselines3) Réseau de neurones MLP gérant un espace d'action continu.</li>
+                                    <li class="lang-text" data-lang="en" style="display: none;"><strong>PPO Agent:</strong> (Stable-Baselines3) MLP Neural Network managing continuous action space.</li>
+                                    
+                                    <li class="lang-text" data-lang="fr"><strong>Environnement Gym :</strong> Traduit les actions en dimensions physiques ($W_{nmos}, W_{pmos}$) et calcule le Reward.</li>
+                                    <li class="lang-text" data-lang="en" style="display: none;"><strong>Gym Environment:</strong> Translates actions into physical dimensions ($W_{nmos}, W_{pmos}$) and calculates Reward.</li>
+                                </ul>
+                            </div>
+
+                            <div style="text-align: center; color: #e1d5e7; margin: 10px 0;">⬇️ <em>Interaction continue</em> ⬆️</div>
+
+                            <div>
+                                <h5 style="color: #8e44ad; margin-top: 0;">
+                                    🔬 Core Simulation : Interface Physique
+                                </h5>
+                                <ul style="font-size: 0.9em; padding-left: 20px; color: #ccc;">
+                                    <li class="lang-text" data-lang="fr"><strong>Générateur Netlist :</strong> Injection dynamique des paramètres W dans les fichiers SPICE.</li>
+                                    <li class="lang-text" data-lang="en" style="display: none;"><strong>Netlist Generator:</strong> Dynamic injection of W parameters into SPICE files.</li>
+                                    
+                                    <li class="lang-text" data-lang="fr"><strong>NGSpice Runner :</strong> Exécution en mode batch silencieux et parsing des résultats (.raw).</li>
+                                    <li class="lang-text" data-lang="en" style="display: none;"><strong>NGSpice Runner:</strong> Silent batch execution and result parsing (.raw).</li>
+                                    
+                                    <li class="lang-text" data-lang="fr"><strong>Smart Cache :</strong> Évite de relancer NGSpice si une configuration (W + Temp + VDD) a déjà été testée.</li>
+                                    <li class="lang-text" data-lang="en" style="display: none;"><strong>Smart Cache:</strong> Avoids re-running NGSpice if a configuration (W + Temp + VDD) has already been tested.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h4>
+                        🛠️ 
+                        <span class="lang-text" data-lang="fr">Compétences Clés</span>
+                        <span class="lang-text" data-lang="en" style="display: none;">Key Skills</span>
+                    </h4>
+                    <ul class="skills-list">
+                        <li>
+                            <strong class="lang-text" data-lang="fr">Deep RL :</strong>
+                            <strong class="lang-text" data-lang="en" style="display: none;">Deep RL:</strong>
+                            PPO, Reward Shaping, Stable-Baselines3.
+                        </li>
+                        <li>
+                            <strong class="lang-text" data-lang="fr">EDA & VLSI :</strong>
+                            <strong class="lang-text" data-lang="en" style="display: none;">EDA & VLSI:</strong>
+                            NGSpice, Standard Cells, PDK SkyWater 130nm.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="timeline-date">
+        <span class="date">2025</span>
+        <div class="timeline-dot"></div>
+    </div>
+</div>

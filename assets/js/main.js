@@ -45,6 +45,7 @@ async function loadProjects() {
     
     // Observer les nouveaux éléments
     initTimelineObserver();
+    initCloseOnClickOutside();
 }
 
 // ========== GESTION DES LANGUES ==========
@@ -131,6 +132,44 @@ document.addEventListener('keydown', (e) => {
             item.querySelector('.timeline-content').classList.remove('expanded');
         });
         document.body.classList.remove('modal-open');
+    }
+});
+
+// Fermer en cliquant en dehors
+function initCloseOnClickOutside() {
+    document.querySelectorAll('.timeline-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Si on clique sur le fond (l'item) et pas sur la carte
+            if (e.target === item && item.classList.contains('expanded')) {
+                closeProject(item);
+            }
+        });
+    });
+
+    // Boutons close
+    document.querySelectorAll('.btn-close').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const item = btn.closest('.timeline-item');
+            closeProject(item);
+        });
+    });
+}
+
+// ========== FONCTION FERMETURE ==========
+function closeProject(item) {
+    const card = item.querySelector('.timeline-content');
+    item.classList.remove('expanded');
+    card.classList.remove('expanded');
+    document.body.classList.remove('modal-open');
+}
+
+// Modifie aussi le listener Escape pour utiliser closeProject
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.timeline-item.expanded').forEach(item => {
+            closeProject(item);
+        });
     }
 });
 
