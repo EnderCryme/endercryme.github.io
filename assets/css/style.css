@@ -982,3 +982,23 @@ code {
 .macro a:hover {
     border-bottom-color: var(--accent);
 }
+
+.btn-video {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 0, 0, 0.15);
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    border-radius: 8px;
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-video:hover {
+    background: rgba(255, 0, 0, 0.25);
+    border-color: #ff6b6b;
+    transform: translateY(-2px);
+}
