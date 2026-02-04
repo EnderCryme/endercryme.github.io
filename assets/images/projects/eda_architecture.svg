@@ -1,0 +1,72 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#555"/>
+        </marker>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.1"/>
+        </filter>
+        <linearGradient id="gradUI" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="gradRL" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#fff7ed;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ffedd5;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <rect width="800" height="450" fill="#ffffff"/>
+
+    <g transform="translate(50, 50)">
+        <rect width="200" height="350" rx="10" fill="url(#gradUI)" stroke="#0ea5e9" stroke-width="2" filter="url(#shadow)"/>
+        <text x="100" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#0284c7" text-anchor="middle">INTERFACE (GUI)</text>
+        
+        <rect x="20" y="60" width="160" height="60" rx="5" fill="#ffffff" stroke="#bae6fd" stroke-width="1"/>
+        <text x="100" y="85" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">PyQt6 Dashboard</text>
+        <text x="100" y="105" font-family="Arial" font-size="10" fill="#666" text-anchor="middle">Paramètres PDK</text>
+
+        <rect x="20" y="140" width="160" height="60" rx="5" fill="#ffffff" stroke="#bae6fd" stroke-width="1"/>
+        <text x="100" y="165" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">pyqtgraph</text>
+        <text x="100" y="185" font-family="Arial" font-size="10" fill="#666" text-anchor="middle">Live Plotting</text>
+    </g>
+
+    <g transform="translate(300, 180)">
+        <rect width="180" height="100" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,5"/>
+        <text x="90" y="30" font-family="Arial" font-size="12" font-weight="bold" fill="#64748b" text-anchor="middle">MIDDLEWARE ASYNC</text>
+        
+        <rect x="20" y="45" width="140" height="40" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+        <text x="90" y="70" font-family="Arial" font-size="12" fill="#333" text-anchor="middle">QThread Workers</text>
+    </g>
+
+    <g transform="translate(530, 50)">
+        <rect width="220" height="350" rx="10" fill="url(#gradRL)" stroke="#f97316" stroke-width="3" filter="url(#shadow)"/>
+        <text x="110" y="30" font-family="Arial" font-size="14" font-weight="bold" fill="#ea580c" text-anchor="middle">BACKEND IA & PHYSIQUE</text>
+        
+        <rect x="30" y="60" width="160" height="70" rx="5" fill="#fff" stroke="#fdba74" stroke-width="2"/>
+        <text x="110" y="90" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">AGENT PPO</text>
+        <text x="110" y="110" font-family="Arial" font-size="10" fill="#666" text-anchor="middle">Stable-Baselines3</text>
+
+        <path d="M 130 130 L 130 155" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
+        <path d="M 90 160 L 90 135" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
+
+        <rect x="30" y="160" width="160" height="160" rx="5" fill="#fff" stroke="#fdba74" stroke-width="2"/>
+        <text x="110" y="185" font-family="Arial" font-size="12" font-weight="bold" fill="#333" text-anchor="middle">GYM ENVIRONMENT</text>
+        
+        <rect x="45" y="200" width="130" height="40" rx="3" fill="#fef3c7" stroke="none"/>
+        <text x="110" y="225" font-family="Arial" font-size="11" fill="#555" text-anchor="middle">1. Netlist Gen (W/L)</text>
+        
+        <rect x="45" y="250" width="130" height="40" rx="3" fill="#fee2e2" stroke="none"/>
+        <text x="110" y="275" font-family="Arial" font-size="11" fill="#b91c1c" text-anchor="middle">2. NGSpice Runner</text>
+    </g>
+
+    <path d="M 250 200 L 300 200" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="275" y="195" font-family="Arial" font-size="10" fill="#666" text-anchor="middle">Config</text>
+
+    <path d="M 300 250 L 250 250" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="275" y="270" font-family="Arial" font-size="10" fill="#666" text-anchor="middle">Logs/Plots</text>
+
+    <path d="M 480 225 L 530 225" stroke="#555" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="505" y="220" font-family="Arial" font-size="10" fill="#666" text-anchor="middle">Start/Stop</text>
+
+</svg>
