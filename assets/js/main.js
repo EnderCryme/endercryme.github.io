@@ -1,11 +1,11 @@
-
 // ========== VARIABLES GLOBALES ==========
 let currentLang = 'fr';
+let slideIndices = {}; // Pour gérer les sliders
 
 // ========== CHARGEMENT DES PROJETS ==========
 const projects = [
     { id: 'project-parking', file: 'assets/projects/project-parking.html' },
-    { id: 'project-AI', file: 'assets/projects/project-AI.html' },
+    // { id: 'project-AI', file: 'assets/projects/project-AI.html' }, // Exemple
 ];
 
 async function loadProjects() {
@@ -22,13 +22,25 @@ async function loadProjects() {
                     const html = await response.text();
                     container.innerHTML = html;
 
-                    // Attribution automatique gauche/droite
+                    // 1. Attribution automatique gauche/droite
                     const timelineItem = container.querySelector('.timeline-item');
                     if (timelineItem) {
                         const side = (i % 2 === 0) ? 'left' : 'right';
                         timelineItem.classList.add(side);
                         console.log(`✅ Projet chargé: ${project.id} (${side})`);
                     }
+
+                    // 2. INITIALISATION DU SLIDER (Correction ici)
+                    // On vérifie si ce projet contient un slider et on l'initialise
+                    const sliders = container.querySelectorAll('.evidence-slider');
+                    sliders.forEach(slider => {
+                        const sliderId = slider.id;
+                        if (sliderId) {
+                            slideIndices[sliderId] = 1;
+                            showSlides(1, sliderId); // Force l'affichage de la 1ère slide
+                        }
+                    });
+
                 } else {
                     console.warn(`❌ Erreur HTTP ${response.status}: ${project.file}`);
                 }
@@ -40,12 +52,47 @@ async function loadProjects() {
         }
     }
 
-    // Réappliquer la langue après chargement
+    // Réappliquer la langue après chargement complet
     setLanguage(currentLang);
     
     // Observer les nouveaux éléments
     initTimelineObserver();
     initCloseOnClickOutside();
+}
+
+// ========== GESTION DU SLIDER ==========
+// Ces fonctions doivent rester globales pour être accessibles via onclick="" dans le HTML
+
+function plusSlides(n, sliderId) {
+    showSlides(slideIndices[sliderId] += n, sliderId);
+}
+
+function showSlides(n, sliderId) {
+    let i;
+    let slider = document.getElementById(sliderId);
+    
+    // Sécurité si le slider n'existe pas encore
+    if (!slider) return;
+
+    let slides = slider.getElementsByClassName("slide");
+    
+    // Initialisation de l'index si pas encore défini
+    if (!slideIndices[sliderId]) { slideIndices[sliderId] = 1; }
+    
+    // Boucle : si on dépasse la fin, on revient au début
+    if (n > slides.length) { slideIndices[sliderId] = 1 }    
+    // Boucle : si on est avant le début, on va à la fin
+    if (n < 1) { slideIndices[sliderId] = slides.length }
+    
+    // Masquer tous les slides
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+        slides[i].classList.remove("active");
+    }
+    
+    // Afficher le slide actuel
+    slides[slideIndices[sliderId]-1].style.display = "block";  
+    slides[slideIndices[sliderId]-1].classList.add("active");
 }
 
 // ========== GESTION DES LANGUES ==========
@@ -128,10 +175,8 @@ function toggleProject(element) {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         document.querySelectorAll('.timeline-item.expanded').forEach(item => {
-            item.classList.remove('expanded');
-            item.querySelector('.timeline-content').classList.remove('expanded');
+            closeProject(item); // Utilisation de la fonction centralisée
         });
-        document.body.classList.remove('modal-open');
     }
 });
 
@@ -164,15 +209,6 @@ function closeProject(item) {
     document.body.classList.remove('modal-open');
 }
 
-// Modifie aussi le listener Escape pour utiliser closeProject
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        document.querySelectorAll('.timeline-item.expanded').forEach(item => {
-            closeProject(item);
-        });
-    }
-});
-
 // ========== SMOOTH SCROLL ==========
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -201,7 +237,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         currentLang = await detectCountry();
     }
     
-    // 2. Charger les projets (appliquera la langue après)
+    // 2. Charger les projets (C'est ici que les sliders seront initialisés)
     await loadProjects();
     
     // 3. Init autres fonctionnalités
@@ -213,41 +249,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     
     console.log('OK - Initialisation terminée');
-});
-
-// Index des slides pour chaque slider (si tu en as plusieurs)
-let slideIndices = {};
-
-function plusSlides(n, sliderId) {
-    showSlides(slideIndices[sliderId] += n, sliderId);
-}
-
-function showSlides(n, sliderId) {
-    let i;
-    let slider = document.getElementById(sliderId);
-    let slides = slider.getElementsByClassName("slide");
-    
-    // Initialisation de l'index si pas encore défini
-    if (!slideIndices[sliderId]) { slideIndices[sliderId] = 1; }
-    
-    // Boucle : si on dépasse la fin, on revient au début
-    if (n > slides.length) {slideIndices[sliderId] = 1}    
-    // Boucle : si on est avant le début, on va à la fin
-    if (n < 1) {slideIndices[sliderId] = slides.length}
-    
-    // Masquer tous les slides
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-        slides[i].classList.remove("active");
-    }
-    
-    // Afficher le slide actuel
-    slides[slideIndices[sliderId]-1].style.display = "block";  
-    slides[slideIndices[sliderId]-1].classList.add("active");
-}
-
-// Initialiser les sliders au chargement (optionnel mais recommandé)
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialise le slider BMS à la slide 1
-    slideIndices['bms-slider'] = 1;
 });
