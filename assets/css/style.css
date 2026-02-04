@@ -1002,3 +1002,14 @@ code {
     border-color: #ff6b6b;
     transform: translateY(-2px);
 }
+
+.award a {
+    color: var(--accent);
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+.award a:hover {
+    color: var(--accent-light, #5ce1ff);
+    text-decoration: none;
+}
