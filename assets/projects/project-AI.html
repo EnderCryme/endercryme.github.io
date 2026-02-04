@@ -45,27 +45,30 @@
                     
                     <div class="evidence-container">
                         <div class="evidence-text">
-                            <p class="lang-text" data-lang="fr">
-                                <strong>La démarche :</strong> Avant de faire de l'IA, il fallait "parler" au simulateur. J'ai dû créer un environnement custom compatible <em>Gymnasium</em> capable d'interagir avec <strong>NGSpice</strong>.<br><br>
-                                <strong>Défis techniques :</strong>
+                            
+                            <div class="lang-text" data-lang="fr">
+                                <p><strong>La démarche :</strong> Avant de faire de l'IA, il fallait "parler" au simulateur. J'ai dû créer un environnement custom compatible <em>Gymnasium</em> capable d'interagir avec <strong>NGSpice</strong>.</p>
+                                <p><strong>Défis techniques :</strong></p>
                                 <ul style="margin-top:5px; margin-bottom:10px; padding-left:15px; font-size:0.9em; color:var(--text-muted);">
                                     <li>Génération dynamique de Netlists SPICE (injection des paramètres W/L).</li>
                                     <li>Parsing robuste des fichiers de sortie <code>.raw</code> pour extraire délais et consommation.</li>
                                     <li><strong>Optimisation :</strong> Le RL nécessitant des milliers d'essais, j'ai dû paralléliser les simulations (Multiprocessing) pour réduire le temps d'entraînement de plusieurs heures à quelques minutes.</li>
                                 </ul>
-                            </p>
-                            <p class="lang-text" data-lang="en" style="display: none;">
-                                <strong>The Approach:</strong> Before AI, we needed to "talk" to the simulator. I created a custom <em>Gymnasium</em>-compatible environment to interact with <strong>NGSpice</strong>.<br><br>
-                                <strong>Technical Challenges:</strong>
+                            </div>
+
+                            <div class="lang-text" data-lang="en" style="display: none;">
+                                <p><strong>The Approach:</strong> Before AI, we needed to "talk" to the simulator. I created a custom <em>Gymnasium</em>-compatible environment to interact with <strong>NGSpice</strong>.</p>
+                                <p><strong>Technical Challenges:</strong></p>
                                 <ul style="margin-top:5px; margin-bottom:10px; padding-left:15px; font-size:0.9em; color:var(--text-muted);">
                                     <li>Dynamic SPICE Netlist generation (W/L parameter injection).</li>
                                     <li>Robust parsing of <code>.raw</code> output files to extract delays and power.</li>
                                     <li><strong>Optimization:</strong> Since RL needs thousands of steps, I parallelized simulations (Multiprocessing) to cut training time from hours to minutes.</li>
                                 </ul>
-                            </p>
+                            </div>
+
                         </div>
                         <div class="evidence-image">
-                            <img src="assets/images/projects/eda_architecture.svg" alt="Architecture Logicielle Pipeline EDA" style="background:white; padding:10px; border-radius:10px;">
+                            <img src="assets/images/projects/eda_architecture.png" alt="Architecture Logicielle Pipeline EDA" style="background:white; padding:10px; border-radius:10px;">
                             <span class="caption">Pipeline optimisé : De la Netlist au Reward</span>
                         </div>
                     </div>
@@ -107,7 +110,8 @@
                     </div>
                 </div>
 
-            </div> </div>
+            </div>
+        </div>
     </div>
 
     <div class="timeline-date">
