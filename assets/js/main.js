@@ -215,3 +215,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('OK - Initialisation terminée');
 });
 
+// Index des slides pour chaque slider (si tu en as plusieurs)
+let slideIndices = {};
+
+function plusSlides(n, sliderId) {
+    showSlides(slideIndices[sliderId] += n, sliderId);
+}
+
+function showSlides(n, sliderId) {
+    let i;
+    let slider = document.getElementById(sliderId);
+    let slides = slider.getElementsByClassName("slide");
+    
+    // Initialisation de l'index si pas encore défini
+    if (!slideIndices[sliderId]) { slideIndices[sliderId] = 1; }
+    
+    // Boucle : si on dépasse la fin, on revient au début
+    if (n > slides.length) {slideIndices[sliderId] = 1}    
+    // Boucle : si on est avant le début, on va à la fin
+    if (n < 1) {slideIndices[sliderId] = slides.length}
+    
+    // Masquer tous les slides
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+        slides[i].classList.remove("active");
+    }
+    
+    // Afficher le slide actuel
+    slides[slideIndices[sliderId]-1].style.display = "block";  
+    slides[slideIndices[sliderId]-1].classList.add("active");
+}
+
+// Initialiser les sliders au chargement (optionnel mais recommandé)
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialise le slider BMS à la slide 1
+    slideIndices['bms-slider'] = 1;
+});
