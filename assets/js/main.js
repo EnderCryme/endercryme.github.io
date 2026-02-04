@@ -6,6 +6,8 @@ let slideIndices = {}; // Pour gérer les sliders
 const projects = [
     { id: 'project-parking', file: 'assets/projects/project-parking.html' },
     { id: 'project-AI', file: 'assets/projects/project-AI.html' },
+    { id: 'project-A8', file: 'assets/projects/project-A8.html' },
+    
 ];
 
 async function loadProjects() {
