@@ -1,59 +1,158 @@
-/* ========================================
-   CARTES PROJETS & EXPANSION
-   ======================================== */
+/* ========== TIMELINE ========== */
+#timeline {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-/* --- Carte fermée --- */
+.timeline-container {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: var(--timeline-line);
+}
+
+/* ========== TIMELINE ITEM ========== */
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+    position: relative;
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row;
+    padding-right: calc(50% + 30px);
+    animation: slideInLeft 0.6s ease forwards;
+}
+
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+    padding-left: calc(50% + 30px);
+    animation: slideInRight 0.6s ease forwards;
+}
+
+/* ========== DATE ========== */
+.timeline-date {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.date {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+/* ========== CARTE PROJET ========== */
 .timeline-content {
     background: var(--bg-card);
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid var(--timeline-line);
-    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    transition: all 0.3s ease;
+    width: 100%;
     position: relative;
 }
 
 .timeline-content:hover {
-    transform: translateY(-5px);
     border-color: var(--primary);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
 }
 
 .project-image {
     width: 100%;
-    height: 180px;
+    height: 200px;
     overflow: hidden;
-    background: var(--bg-dark);
 }
 
 .project-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
 }
 
 .timeline-content:hover .project-image img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .project-info {
-    padding: 1.5rem;
+    padding: 20px;
 }
 
 .project-info h3 {
     font-size: 1.3rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 10px;
     color: var(--text);
 }
 
 .project-info p {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
 }
 
-/* --- État Expanded (Fullscreen) --- */
+/* ========== BOUTON FERMER ========== */
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--timeline-line);
+    color: var(--text);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1010;
+    transition: all 0.3s ease;
+}
+
+.btn-close:hover {
+    background: rgba(255, 0, 0, 0.3);
+    border-color: #ff6b6b;
+}
+
+/* ========== ÉTAT COLLAPSED : DÉTAILS CACHÉS ========== */
+.project-details {
+    display: none;
+}
+
+/* ========== ÉTAT EXPANDED : FULLSCREEN ========== */
 .timeline-item.expanded {
     position: fixed;
     top: 0;
@@ -62,97 +161,45 @@
     height: 100vh;
     z-index: 1000;
     margin: 0;
-    padding: 1rem;
-    display: block;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.85);
+    animation: none;
+    flex-direction: row !important;
     overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    background: var(--bg-dark);
 }
 
 .timeline-item.expanded .timeline-content {
-    width: 100%;
-    max-width: 1000px;
-    margin: 2rem auto 6rem auto;
-    max-height: none;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
     border-radius: 20px;
-    position: relative;
-    height: auto;
+    border-color: var(--primary);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    transform: none;
 }
 
-.timeline-item.expanded .timeline-date {
-    display: none;
-}
-
-.timeline-item.expanded .project-image {
-    height: 300px;
+.timeline-item.expanded .timeline-content:hover {
+    transform: none;
 }
 
 .timeline-item.expanded .btn-close {
-    position: sticky;
-    top: 1rem;
-    right: 1rem;
-    float: right;
-    opacity: 1;
-    pointer-events: auto;
-    width: 45px;
-    height: 45px;
-    font-size: 1.3rem;
-    background: var(--bg-card);
-    border: 2px solid var(--accent);
-    z-index: 10;
-    margin-bottom: -45px;
+    display: flex;
 }
 
-/* --- Détails Projet (contenu expanded) --- */
-.detail-block {
-    margin-bottom: 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 30px;
-}
-
-.detail-block:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.detail-block h4 {
-    color: var(--text);
-    margin-bottom: 20px;
-    border-left: 4px solid var(--accent);
-    padding-left: 15px;
-    font-size: 1.1em;
-    font-weight: 600;
-}
-
-/* --- Results Grid --- */
-.results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
-}
-
-.result-item {
-    text-align: center;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.result-value {
+.timeline-item.expanded .project-details {
     display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
+    padding: 30px;
 }
 
-.result-item p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: var(--text-muted);
+.timeline-item.expanded .timeline-date,
+.timeline-item.expanded .date {
+    display: none;
 }
 
+.timeline-item.expanded .btn-expand {
+    display: none;
+}
