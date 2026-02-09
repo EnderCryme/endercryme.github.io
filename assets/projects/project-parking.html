@@ -7,15 +7,18 @@
         </div>
 
         <div class="project-info">
-            <h3>Parking Modular System (PSM)</h3>
+            <h3>
+                <span class="lang-text" data-lang="fr">Parking Modular System (PSM)</span>
+                <span class="lang-text" data-lang="en" style="display: none;">Parking Modular System (PSM)</span>
+            </h3>
 
             <p class="lang-text" data-lang="fr">
                 Architecte système et Lead Power pour un système de parking IoT autonome. 
-                Conception complète d'un BMS 100W USB-C PD et implémentation d'un SoC RISC-V sur FPGA pour le contrôle moteur.
+                Conception complète d'un <strong>BMS 100W USB-C PD</strong> et implémentation d'un <strong>SoC RISC-V</strong> sur FPGA pour le contrôle moteur.
             </p>
             <p class="lang-text" data-lang="en" style="display: none;">
                 System Architect & Power Lead for an autonomous IoT parking system. 
-                Full design of a 100W USB-C PD BMS and implementation of a RISC-V SoC on FPGA for motor control.
+                Full design of a <strong>100W USB-C PD BMS</strong> and implementation of a <strong>RISC-V SoC</strong> on FPGA for motor control.
             </p>
 
             <div class="project-tags">
@@ -31,7 +34,7 @@
                     <span class="lang-text" data-lang="fr">En savoir plus →</span>
                     <span class="lang-text" data-lang="en" style="display: none;">Learn more →</span>
                 </button>
-                
+
                 <a href="https://github.com/vincent-cauquil/5A-Projet-Parking" class="btn-github" target="_blank">
                     <svg class="icon"><use href="#icon-github"/></svg> GitHub
                 </a>
@@ -42,94 +45,195 @@
             </div>
 
             <div class="project-details">
-    
+
+                <!-- ===== BLOC 1 : Architecture de Puissance & BMS ===== -->
                 <div class="detail-block">
                     <h4 class="lang-text" data-lang="fr"> Architecture de Puissance & BMS (KiCad)</h4>
                     <h4 class="lang-text" data-lang="en" style="display: none;"> Power Architecture & BMS (KiCad)</h4>
-                    
+
                     <div class="evidence-container">
                         <div class="evidence-text">
-                            <p class="lang-text" data-lang="fr">
-                                <strong>Contexte & Défi :</strong> Alimenter une architecture hétérogène (FPGA, CPU IA, Moteurs 20V) nécessitant 65W constants, avec une autonomie cible de 2h.<br><br>
-                                <strong>Conception Hardware :</strong> Réalisation sous KiCad 7 d'un BMS 4S3P (Cellules Samsung INR18650-35E). Architecture <strong>NVDC</strong> (Narrow Voltage DC) implémentée avec le trio Texas Instruments : Chargeur Buck-Boost <strong>BQ25713</strong> (gestion USB-C PD 100W), Jauge <strong>BQ40Z50</strong> (algorithme Impedance Track™) et Protection Secondaire <strong>BQ296102</strong>.<br><br>
-                                <strong>Intelligence Embarquée :</strong> Intégration stratégique d'un <strong>RP2350</strong> pour le monitoring et le calcul d'Indice de Performance (IPN). Choisi pour son ratio performance/prix supérieur au STM32 (IPN ~8500 vs ~444) pour cette tâche de supervision.
-                            </p>
-                            <p class="lang-text" data-lang="en" style="display: none;">
-                                <strong>Context & Challenge:</strong> Powering a heterogeneous architecture (FPGA, AI CPU, 20V Motors) requiring 65W constant load, with a 2h autonomy target.<br><br>
-                                <strong>Hardware Design:</strong> Designed a 4S3P BMS (Samsung INR18650-35E cells) using KiCad 7. Implemented an <strong>NVDC</strong> (Narrow Voltage DC) architecture with the Texas Instruments trio: Buck-Boost Charger <strong>BQ25713</strong> (100W USB-C PD management), Fuel Gauge <strong>BQ40Z50</strong> (Impedance Track™ algorithm), and Secondary Protection <strong>BQ296102</strong>.<br><br>
-                                <strong>Embedded Intelligence:</strong> Strategic integration of an <strong>RP2350</strong> for monitoring and Performance Index (IPN) calculation. Selected for its superior price/performance ratio compared to STM32 (IPN ~8500 vs ~444) for this supervision task.
-                            </p>
+                            <div class="lang-text" data-lang="fr">
+                                <p><strong>Contexte & Défi :</strong> Alimenter une architecture hétérogène (FPGA, CPU IA, Moteurs 20V) nécessitant <strong>65W constants</strong>, avec une autonomie cible de <strong>2h</strong>.</p>
+                                
+                                <p><strong>Conception Hardware :</strong> Réalisation sous <strong>KiCad 7</strong> d'un BMS 4S3P (Cellules <strong>Samsung INR18650-35E</strong>). Architecture <strong>NVDC</strong> (Narrow Voltage DC) implémentée avec le trio Texas Instruments :</p>
+                                <ul>
+                                    <li>Chargeur Buck-Boost <strong>BQ25713</strong> (gestion USB-C PD 100W)</li>
+                                    <li>Jauge <strong>BQ40Z50</strong> (algorithme Impedance Track™)</li>
+                                    <li>Protection Secondaire <strong>BQ296102</strong></li>
+                                </ul>
+                                
+                                <p><strong>Intelligence Embarquée :</strong> Intégration stratégique d'un <strong>RP2350</strong> pour le monitoring et le calcul d'Indice de Performance (IPN). Choisi pour son ratio performance/prix supérieur au STM32 (IPN ~<strong>8500 vs ~444</strong>) pour cette tâche de supervision.</p>
+                            </div>
+
+                            <div class="lang-text" data-lang="en" style="display: none;">
+                                <p><strong>Context & Challenge:</strong> Powering a heterogeneous architecture (FPGA, AI CPU, 20V Motors) requiring <strong>65W constant load</strong>, with a <strong>2h autonomy</strong> target.</p>
+                                
+                                <p><strong>Hardware Design:</strong> Designed a 4S3P BMS (<strong>Samsung INR18650-35E</strong> cells) using <strong>KiCad 7</strong>. Implemented an <strong>NVDC</strong> (Narrow Voltage DC) architecture with the Texas Instruments trio:</p>
+                                <ul>
+                                    <li>Buck-Boost Charger <strong>BQ25713</strong> (100W USB-C PD management)</li>
+                                    <li>Fuel Gauge <strong>BQ40Z50</strong> (Impedance Track™ algorithm)</li>
+                                    <li>Secondary Protection <strong>BQ296102</strong></li>
+                                </ul>
+                                
+                                <p><strong>Embedded Intelligence:</strong> Strategic integration of an <strong>RP2350</strong> for monitoring and Performance Index (IPN) calculation. Selected for its superior price/performance ratio compared to STM32 (IPN ~<strong>8500 vs ~444</strong>) for this supervision task.</p>
+                            </div>
                         </div>
-            
+
                         <div class="evidence-slider" id="bms-slider">
                             <div class="slide active">
                                 <img src="assets/images/project-parking/BMS_schem.png" alt="Architecture Synoptique BMS RP2350">
-                                <span class="caption">1/2 : Architecture Conceptuelle (Trio TI + RP2350)</span>
+                                <span class="caption lang-text" data-lang="fr">1/2 : Architecture Conceptuelle (Trio TI + RP2350)</span>
+                                <span class="caption lang-text" data-lang="en" style="display: none;">1/2: Conceptual Architecture (TI Trio + RP2350)</span>
                             </div>
                             <div class="slide">
                                 <img src="assets/images/project-parking/BMS_3D_view.png" alt="Vue 3D KiCad PCB">
-                                <span class="caption">2/2 : Modélisation 3D & Placement (KiCad 7)</span>
+                                <span class="caption lang-text" data-lang="fr">2/2 : Modélisation 3D & Placement (KiCad 7)</span>
+                                <span class="caption lang-text" data-lang="en" style="display: none;">2/2: 3D Modeling & Placement (KiCad 7)</span>
                             </div>
                             <a class="prev" onclick="plusSlides(-1, 'bms-slider')">❮</a>
                             <a class="next" onclick="plusSlides(1, 'bms-slider')">❯</a>
                         </div>
                     </div>
                 </div>
-            
+
+                <!-- ===== BLOC 2 : FPGA & SoC RISC-V ===== -->
                 <div class="detail-block">
                     <h4 class="lang-text" data-lang="fr"> FPGA & SoC RISC-V (LiteX)</h4>
                     <h4 class="lang-text" data-lang="en" style="display: none;"> FPGA & RISC-V SoC (LiteX)</h4>
-            
+
                     <div class="evidence-container">
                         <div class="evidence-text">
-                            <p class="lang-text" data-lang="fr">
-                                <strong>Objectif :</strong> Piloter des barrières motorisées (Moteurs Pas-à-pas NEMA) avec une précision temps réel tout en conservant la flexibilité d'un OS haut niveau.<br><br>
-                                <strong>Implémentation SoC :</strong> Déploiement d'un Softcore <strong>VexRiscv</strong> (32-bit RISC-V) sur FPGA Nexys A7-100T via la toolchain LiteX. Intégration d'un bus AXI pour la communication entre le CPU et les périphériques custom.<br><br>
-                                <strong>Linux & Drivers :</strong> Compilation d'un noyau Linux embarqué via Buildroot. Développement d'un driver spécifique utilisant le mapping mémoire (<code>mmap</code>) pour contrôler directement les registres matériels des moteurs depuis l'espace utilisateur Linux, contournant les latences classiques.
-                            </p>
-                            <p class="lang-text" data-lang="en" style="display: none;">
-                                <strong>Objective:</strong> Controlling motorized barriers (NEMA Stepper Motors) with real-time precision while maintaining high-level OS flexibility.<br><br>
-                                <strong>SoC Implementation:</strong> Deployed a <strong>VexRiscv</strong> Softcore (32-bit RISC-V) on Nexys A7-100T FPGA using the LiteX toolchain. Integrated an AXI bus for communication between CPU and custom peripherals.<br><br>
-                                <strong>Linux & Drivers:</strong> Compiled an embedded Linux kernel via Buildroot. Developed a specific driver using memory mapping (<code>mmap</code>) to directly control motor hardware registers from Linux user space, bypassing standard latency issues.
-                            </p>
+                            <div class="lang-text" data-lang="fr">
+                                <p><strong>Objectif :</strong> Piloter des barrières motorisées (Moteurs Pas-à-pas <strong>NEMA</strong>) avec une précision temps réel tout en conservant la flexibilité d'un OS haut niveau.</p>
+                                
+                                <p><strong>Implémentation SoC :</strong> Déploiement d'un Softcore <strong>VexRiscv</strong> (32-bit RISC-V) sur FPGA <strong>Nexys A7-100T</strong> via la toolchain <strong>LiteX</strong>. Intégration d'un bus <strong>AXI</strong> pour la communication entre le CPU et les périphériques custom.</p>
+                                
+                                <p><strong>Linux & Drivers :</strong> Compilation d'un noyau <strong>Linux embarqué</strong> via <strong>Buildroot</strong>. Développement d'un driver spécifique utilisant le mapping mémoire (<code>mmap</code>) pour contrôler directement les registres matériels des moteurs depuis l'espace utilisateur Linux, contournant les latences classiques.</p>
+                            </div>
+
+                            <div class="lang-text" data-lang="en" style="display: none;">
+                                <p><strong>Objective:</strong> Controlling motorized barriers (<strong>NEMA</strong> Stepper Motors) with real-time precision while maintaining high-level OS flexibility.</p>
+                                
+                                <p><strong>SoC Implementation:</strong> Deployed a <strong>VexRiscv</strong> Softcore (32-bit RISC-V) on <strong>Nexys A7-100T</strong> FPGA using the <strong>LiteX</strong> toolchain. Integrated an <strong>AXI bus</strong> for communication between CPU and custom peripherals.</p>
+                                
+                                <p><strong>Linux & Drivers:</strong> Compiled an <strong>embedded Linux</strong> kernel via <strong>Buildroot</strong>. Developed a specific driver using memory mapping (<code>mmap</code>) to directly control motor hardware registers from Linux user space, bypassing standard latency issues.</p>
+                            </div>
                         </div>
                         <div class="evidence-image">
                             <img src="assets/images/project-parking/fpga_soc_arch.png" alt="Architecture SoC LiteX RISC-V">
-                            <span class="caption">Architecture du SoC Custom VexRiscv sur FPGA</span>
+                            <span class="caption lang-text" data-lang="fr">Architecture du SoC Custom VexRiscv sur FPGA</span>
+                            <span class="caption lang-text" data-lang="en" style="display: none;">Custom VexRiscv SoC Architecture on FPGA</span>
                         </div>
                     </div>
                 </div>
-            
+
+                <!-- ===== BLOC 3 : Architecture Système & Coordination ===== -->
                 <div class="detail-block">
                     <h4 class="lang-text" data-lang="fr"> Architecture Système & Coordination</h4>
                     <h4 class="lang-text" data-lang="en" style="display: none;"> System Architecture & Coordination</h4>
-            
+
                     <div class="evidence-container">
                         <div class="evidence-text">
-                            <p class="lang-text" data-lang="fr">
-                                <strong>Rôle :</strong> Lead Technique et Coordinateur d'une équipe de 4 ingénieurs.<br><br>
-                                <strong>Architecture Distribuée :</strong> Conception d'un réseau IoT local sur protocole <strong>MQTT</strong>. Orchestration des flux de données entre le "Cerveau" (BeagleY-AI / Broker), l'Interface Utilisateur (STM32F7) et l'Actionneur de Puissance (FPGA).<br><br>
-                                <strong>Contribution Transverse :</strong> Support au développement de la Base de Données SQL pour garantir l'intégrité des règles d'accès (Anti-passback, Logs) et supervision de l'intégration globale des modules mécaniques, électroniques et logiciels.
-                            </p>
-                            <p class="lang-text" data-lang="en" style="display: none;">
-                                <strong>Role:</strong> Technical Lead and Coordinator for a team of 4 engineers.<br><br>
-                                <strong>Distributed Architecture:</strong> Designed a local IoT network based on <strong>MQTT</strong> protocol. Orchestrated data flows between the "Brain" (BeagleY-AI / Broker), the User Interface (STM32F7), and the Power Actuator (FPGA).<br><br>
-                                <strong>Cross-functional Contribution:</strong> Supported SQL Database development to ensure access rule integrity (Anti-passback, Logs) and supervised the global integration of mechanical, electrical, and software modules.
-                            </p>
+                            <div class="lang-text" data-lang="fr">
+                                <p><strong>Rôle :</strong> Lead Technique et Coordinateur d'une équipe de <strong>4 ingénieurs</strong>.</p>
+                                
+                                <p><strong>Architecture Distribuée :</strong> Conception d'un réseau IoT local sur protocole <strong>MQTT</strong>. Orchestration des flux de données entre :</p>
+                                <ul>
+                                    <li>Le "Cerveau" (<strong>BeagleY-AI</strong> / Broker MQTT)</li>
+                                    <li>L'Interface Utilisateur (<strong>STM32F7</strong>)</li>
+                                    <li>L'Actionneur de Puissance (<strong>FPGA</strong>)</li>
+                                </ul>
+                                
+                                <p><strong>Contribution Transverse :</strong> Support au développement de la <strong>Base de Données SQL</strong> pour garantir l'intégrité des règles d'accès (Anti-passback, Logs) et supervision de l'intégration globale des modules mécaniques, électroniques et logiciels.</p>
+                            </div>
+
+                            <div class="lang-text" data-lang="en" style="display: none;">
+                                <p><strong>Role:</strong> Technical Lead and Coordinator for a team of <strong>4 engineers</strong>.</p>
+                                
+                                <p><strong>Distributed Architecture:</strong> Designed a local IoT network based on <strong>MQTT</strong> protocol. Orchestrated data flows between:</p>
+                                <ul>
+                                    <li>The "Brain" (<strong>BeagleY-AI</strong> / MQTT Broker)</li>
+                                    <li>The User Interface (<strong>STM32F7</strong>)</li>
+                                    <li>The Power Actuator (<strong>FPGA</strong>)</li>
+                                </ul>
+                                
+                                <p><strong>Cross-functional Contribution:</strong> Supported <strong>SQL Database</strong> development to ensure access rule integrity (Anti-passback, Logs) and supervised the global integration of mechanical, electrical, and software modules.</p>
+                            </div>
                         </div>
                         <div class="evidence-image">
                             <img src="assets/images/project-parking/global_arch.png" alt="Architecture Distribuée MQTT">
-                            <span class="caption">Synoptique Global des interactions système (MQTT)</span>
+                            <span class="caption lang-text" data-lang="fr">Synoptique Global des interactions système (MQTT)</span>
+                            <span class="caption lang-text" data-lang="en" style="display: none;">Global System Interactions Overview (MQTT)</span>
                         </div>
                     </div>
                 </div>
-            
+
+                <!-- ===== BLOC 4 : Compétences Mobilisées ===== -->
+                <div class="detail-block">
+                    <h4 class="lang-text" data-lang="fr"> Compétences Mobilisées</h4>
+                    <h4 class="lang-text" data-lang="en" style="display: none;"> Skills Leveraged</h4>
+
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h5 class="lang-text" data-lang="fr">Power Electronics</h5>
+                            <h5 class="lang-text" data-lang="en" style="display: none;">Power Electronics</h5>
+                            <ul>
+                                <li>USB-C Power Delivery (100W)</li>
+                                <li>BMS Design (4S3P Li-Ion)</li>
+                                <li>NVDC Architecture (TI)</li>
+                                <li>KiCad 7 (Schematic & PCB)</li>
+                            </ul>
+                        </div>
+                
+                        <div class="skill-category">
+                            <h5 class="lang-text" data-lang="fr">FPGA & SoC</h5>
+                            <h5 class="lang-text" data-lang="en" style="display: none;">FPGA & SoC</h5>
+                            <ul>
+                                <li>RISC-V (VexRiscv Softcore)</li>
+                                <li>LiteX Framework</li>
+                                <li>AXI Bus Integration</li>
+                                <li>Embedded Linux (Buildroot)</li>
+                            </ul>
+                        </div>
+                
+                        <div class="skill-category">
+                            <h5 class="lang-text" data-lang="fr">Programmation</h5>
+                            <h5 class="lang-text" data-lang="en" style="display: none;">Programming</h5>
+                            <ul>
+                                <li>C/C++ (Drivers, Firmware)</li>
+                                <li>Python (Automation, Scripts)</li>
+                                <li>Bash (System Scripts)</li>
+                                <li>HTML/CSS/JS (UI Refactoring)</li>
+                            </ul>
+                        </div>
+                
+                        <div class="skill-category">
+                            <h5 class="lang-text" data-lang="fr">IoT & Intégration Système</h5>
+                            <h5 class="lang-text" data-lang="en" style="display: none;">IoT & System Integration</h5>
+                            <ul>
+                                <li>MQTT Protocol</li>
+                                <li>BeagleY-AI (AI Edge)</li>
+                                <li>SQL Database (Access Rules)</li>
+                                <li>
+                                    <span class="lang-text" data-lang="fr">Coordination d'équipe (4 ing.)</span>
+                                    <span class="lang-text" data-lang="en" style="display: none;">Team Coordination (4 eng.)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
     <div class="timeline-date">
-        <span class="date">2025 - 2026</span>
+        <span class="date">
+            <span class="lang-text" data-lang="fr">Oct 2025 - Jan 2026</span>
+            <span class="lang-text" data-lang="en" style="display: none;">Oct 2025 - Jan 2026</span>
+        </span>
         <div class="timeline-dot"></div>
     </div>
 </div>
