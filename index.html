@@ -36,23 +36,66 @@
     <section id="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <span class="greeting lang-text" data-lang="fr">Bonjour, je suis</span>
-                <span class="greeting lang-text" data-lang="en" style="display: none;">Hi, I'm</span>
+                <!-- Greeting -->
+                <p class="greeting">
+                    <span class="lang-text" data-lang="fr">Bonjour, je suis</span>
+                    <span class="lang-text" data-lang="en" style="display: none;">Hi, I'm</span>
+                </p>
+    
+                <!-- Name -->
                 <h1>Vincent Cauquil</h1>
-                <p class="tagline lang-text" data-lang="fr">Apprenti Ingénieur Chercheur • Physique & Microélectronique</p>
-                <p class="tagline lang-text" data-lang="en" style="display: none;">Apprentice Research Engineer • Physics & Microelectronics</p>
-                <p class="bio lang-text macro" data-lang="fr">
-                    Du silicium au quantique, je conçois des circuits électroniques pour repousser les limites du calcul.
-                    <br>En apprentissage au \CEA_Leti, j'apprends à travers l'équipe d'intégration, de caractérisation 300K/40K/4K et de design. Avec mes différents projets et affinités, je tends à me spécialiser en électronique cryogénique (4K) et conception de circuits mixtes.
-                    <br>Passionné de technologies émergentes, d'architectures de calcul (neuromorphiques & RISC-V) et d'environnements contraints (spatial & cryogénique).
-                    <br>🏆 Major de la 1ère promotion PSM à \CPE_Lyon (2023-2026).
+    
+                <!-- Subtitle -->
+                <p class="subtitle">
+                    <span class="lang-text" data-lang="fr">Apprenti Ingénieur Chercheur • Physique & Microélectronique</span>
+                    <span class="lang-text" data-lang="en" style="display: none;">Apprentice Research Engineer • Physics & Microelectronics</span>
                 </p>
-                <p class="bio lang-text macro" data-lang="en" style="display: none;">
-                    From silicon to quantum, I design electronic circuits to push the boundaries of computing.
-                    <br>As an apprentice at \CEA_Leti, I learn through the integration, 300K/40K/4K characterization and design team. Through my various projects and interests, I am specializing in cryogenic electronics (4K) and mixed-signal circuit design.
-                    <br>Passionate about emerging technologies, computing architectures (neuromorphic & RISC-V) and constrained environments (space & cryogenic).
-                    <br>🏆 Valedictorian of the 1st PSM class at \CPE_Lyon (2023-2026).
+    
+                <!-- TAGLINE — La phrase choc isolée -->
+                <p class="tagline">
+                    <span class="lang-text" data-lang="fr">Du silicium au quantique, je conçois des circuits électroniques pour repousser les limites du calcul.</span>
+                    <span class="lang-text" data-lang="en" style="display: none;">From silicon to quantum, I design electronic circuits to push the boundaries of computing.</span>
                 </p>
+    
+                <!-- BIO STRUCTURÉE avec icônes -->
+                <div class="hero-bio">
+                    <div class="bio-item">
+                        <span class="bio-icon">🔬</span>
+                        <div class="lang-text macro" data-lang="fr">
+                            En apprentissage au \CEA_Leti — intégration, caractérisation <strong>300K / 40K / 4K</strong> et design.
+                            Spécialisation en <strong>électronique cryogénique</strong> et <strong>circuits mixtes</strong>.
+                        </div>
+                        <div class="lang-text macro" data-lang="en" style="display: none;">
+                            Apprentice at \CEA_Leti — integration, <strong>300K / 40K / 4K</strong> characterization and design.
+                            Specializing in <strong>cryogenic electronics</strong> and <strong>mixed-signal circuits</strong>.
+                        </div>
+                    </div>
+    
+                    <div class="bio-item">
+                        <span class="bio-icon">⚡</span>
+                        <div class="lang-text" data-lang="fr">
+                            Passionné d'architectures de calcul (<strong>neuromorphiques</strong> & <strong>RISC-V</strong>) et d'environnements contraints (<strong>spatial</strong> & <strong>cryogénique</strong>).
+                        </div>
+                        <div class="lang-text" data-lang="en" style="display: none;">
+                            Passionate about computing architectures (<strong>neuromorphic</strong> & <strong>RISC-V</strong>) and constrained environments (<strong>space</strong> & <strong>cryogenic</strong>).
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- AWARD BADGE — Mis en avant ! -->
+                <div class="award-badge">
+                    <span class="award-icon">🏆</span>
+                    <div>
+                        <span class="lang-text macro" data-lang="fr">
+                            <strong>Major de promotion</strong> — 1ère promo PSM, \CPE_Lyon (2023-2026)
+                        </span>
+                        <span class="lang-text macro" data-lang="en" style="display: none;">
+                            <strong>Valedictorian</strong> — 1st PSM class, \CPE_Lyon (2023-2026)
+                        </span>
+                    </div>
+                </div>
+    
+                <!-- BOUTONS -->
                 <div class="hero-buttons">
                     <a href="assets/ressource/CAUQUIL-Vincent-CV.pdf" class="btn btn-primary" target="_blank">
                         <span class="btn-icon">📄</span>
@@ -65,17 +108,21 @@
                     </a>
                 </div>
             </div>
+    
+            <!-- AVATAR avec glow amélioré -->
             <div class="hero-image">
                 <div class="avatar-container">
                     <img src="assets/images/V_cauq_img.png" alt="Vincent Cauquil" class="avatar">
                 </div>
             </div>
         </div>
+    
         <div class="scroll-indicator">
             <div class="mouse"></div>
             <span>Scroll</span>
         </div>
     </section>
+
 
     <!-- TIMELINE - PROJETS -->
     <section id="timeline">
