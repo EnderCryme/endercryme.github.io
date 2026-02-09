@@ -1,0 +1,181 @@
+<!-- ========================================
+     PROJET : PAPER DE RECHERCHE — TECM
+     ======================================== -->
+
+     <div class="timeline-item">
+        <div class="timeline-date">
+            <span class="date">2024-2025</span>
+            <div class="timeline-dot"></div>
+        </div>
+    
+        <div class="timeline-content">
+            <button class="btn-close" onclick="toggleProject(this)">✕</button>
+    
+            <div class="project-image">
+                <img src="assets/images/project-research/paper_cover.png" 
+                     alt="Processeurs Neuromorphiques - Paper de Recherche">
+            </div>
+    
+            <div class="project-info">
+                <h3 class="lang-text" data-lang="fr">Paper de Recherche : Processeurs Neuromorphiques</h3>
+                <h3 class="lang-text" data-lang="en" style="display: none;">Research Paper: Neuromorphic Processors</h3>
+    
+                <p class="project-description">
+                    <span class="lang-text" data-lang="fr">
+                        Analyse critique des architectures neuromorphiques hybrides (CMOS + RRAM/PCM) et de leurs compromis énergétiques. Exercice de formation à la rédaction scientifique et à la pensée critique.
+                    </span>
+                    <span class="lang-text" data-lang="en" style="display: none;">
+                        Critical analysis of hybrid neuromorphic architectures (CMOS + RRAM/PCM) and their energy trade-offs. Training exercise in scientific writing and critical thinking.
+                    </span>
+                </p>
+    
+                <div class="project-tags">
+                    <span class="tag">Neuromorphique</span>
+                    <span class="tag">IA Matérielle</span>
+                    <span class="tag">RRAM/PCM</span>
+                    <span class="tag">Rédaction Scientifique</span>
+                </div>
+    
+                <div class="card-buttons">
+                    <button class="btn-expand" onclick="toggleProject(this)">
+                        <span class="lang-text" data-lang="fr">En savoir plus →</span>
+                        <span class="lang-text" data-lang="en" style="display: none;">Learn more →</span>
+                    </button>
+                    
+                    <a href="assets/ressource/V-CAUQUIL-Processeurs-Neuromorphiques-Enjeux-Limites-et-Architectures-Hybrides.pdf" 
+                       class="btn-github" target="_blank">
+                        📄 <span class="lang-text" data-lang="fr">Lire le Paper</span>
+                        <span class="lang-text" data-lang="en" style="display: none;">Read Paper</span>
+                    </a>
+                </div>
+            </div>
+    
+            <!-- DÉTAILS EXPANDÉS -->
+            <div class="project-details" style="display: none;">
+    
+                <!-- OBJECTIF & CONTEXTE -->
+                <div class="detail-block">
+                    <h4 class="lang-text" data-lang="fr">🎯 Objectif & Méthodologie</h4>
+                    <h4 class="lang-text" data-lang="en" style="display: none;">🎯 Objective & Methodology</h4>
+    
+                    <div class="evidence-container">
+                        <div class="evidence-text">
+                            <div class="lang-text" data-lang="fr">
+                                <p><strong>Problématique :</strong> Comment les architectures hybrides peuvent-elles dépasser les limites énergétiques des processeurs IA traditionnels ?</p>
+                                
+                                <p><strong>Démarche :</strong></p>
+                                <ul>
+                                    <li><strong>État de l'art :</strong> Analyse comparative Intel Loihi 2, IBM TrueNorth, BrainChip Akida</li>
+                                    <li><strong>Critique :</strong> Identification des verrous (variabilité RRAM, précision stochastique)</li>
+                                    <li><strong>Proposition :</strong> Architecture hybride exploitant le bruit comme ressource</li>
+                                </ul>
+                                
+                                <p><strong>Formation aux méthodes de recherche :</strong> Veille bibliographique, rédaction académique (structure IMRAD, citations IEEE), participation aux séminaires du département ELT.</p>
+                            </div>
+                            <div class="lang-text" data-lang="en" style="display: none;">
+                                <p><strong>Research Question:</strong> How can hybrid architectures overcome energy limitations of traditional AI processors?</p>
+                                
+                                <p><strong>Approach:</strong></p>
+                                <ul>
+                                    <li><strong>State-of-the-art:</strong> Comparative analysis of Intel Loihi 2, IBM TrueNorth, BrainChip Akida</li>
+                                    <li><strong>Critique:</strong> Identification of bottlenecks (RRAM variability, stochastic precision)</li>
+                                    <li><strong>Proposal:</strong> Hybrid architecture exploiting noise as a resource</li>
+                                </ul>
+                                
+                                <p><strong>Research training:</strong> Bibliographic monitoring, academic writing (IMRAD structure, IEEE citations), participation in ELT department seminars.</p>
+                            </div>
+                        </div>
+    
+                        <div class="evidence-image">
+                            <img src="assets/images/project-research/memory_wall.png" 
+                                 alt="Memory Wall Problem">
+                            <span class="caption lang-text" data-lang="fr">Memory Wall — Le goulot d'étranglement énergétique des architectures Von Neumann</span>
+                            <span class="caption lang-text" data-lang="en" style="display: none;">Memory Wall — Energy bottleneck of Von Neumann architectures</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- RÉSULTATS -->
+                <div class="detail-block">
+                    <h4 class="lang-text" data-lang="fr">📊 Résultats & Conclusions</h4>
+                    <h4 class="lang-text" data-lang="en" style="display: none;">📊 Results & Conclusions</h4>
+    
+                    <div class="evidence-container">
+                        <div class="evidence-text">
+                            <div class="lang-text" data-lang="fr">
+                                <p><strong>Analyse Comparative :</strong> Benchmark des processeurs neuromorphiques existants (consommation, latence, précision). Mise en évidence du compromis fondamental <strong>efficacité énergétique ↔ précision</strong>.</p>
+                                
+                                <p><strong>Limites Identifiées :</strong></p>
+                                <ul>
+                                    <li>Variabilité des mémoires RRAM/PCM (cycle-to-cycle, device-to-device)</li>
+                                    <li>Algorithmes d'apprentissage pour SNN encore immatures vs Deep Learning classique</li>
+                                    <li>Compromis non-résolu entre précision stochastique et applications critiques</li>
+                                </ul>
+                                
+                                <p><strong>Proposition :</strong> Architecture hybride exploitant le bruit matériel comme ressource computationnelle (Stochastic Computing), avec un paradigme de tolérance au bruit dès la conception.</p>
+                            </div>
+                            <div class="lang-text" data-lang="en" style="display: none;">
+                                <p><strong>Comparative Analysis:</strong> Benchmark of existing neuromorphic processors (power, latency, precision). Highlighting the fundamental trade-off <strong>energy efficiency ↔ precision</strong>.</p>
+                                
+                                <p><strong>Identified Limitations:</strong></p>
+                                <ul>
+                                    <li>RRAM/PCM variability (cycle-to-cycle, device-to-device)</li>
+                                    <li>SNN training algorithms still immature vs classical Deep Learning</li>
+                                    <li>Unresolved trade-off between stochastic precision and critical applications</li>
+                                </ul>
+                                
+                                <p><strong>Proposal:</strong> Hybrid architecture exploiting hardware noise as computational resource (Stochastic Computing), with a noise-tolerance paradigm from design phase.</p>
+                            </div>
+                        </div>
+    
+                        <div class="evidence-image">
+                            <img src="assets/images/project-research/hybrid_architecture.png" 
+                                 alt="Architecture Hybride Proposée">
+                            <span class="caption lang-text" data-lang="fr">Architecture Hybride — CMOS + RRAM avec exploitation du bruit</span>
+                            <span class="caption lang-text" data-lang="en" style="display: none;">Hybrid Architecture — CMOS + RRAM with noise exploitation</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- COMPÉTENCES -->
+                <div class="detail-block">
+                    <h4 class="lang-text" data-lang="fr">💡 Compétences Développées</h4>
+                    <h4 class="lang-text" data-lang="en" style="display: none;">💡 Skills Developed</h4>
+    
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h5 class="lang-text" data-lang="fr">Soft Skills</h5>
+                            <h5 class="lang-text" data-lang="en" style="display: none;">Soft Skills</h5>
+                            <ul>
+                                <li class="lang-text" data-lang="fr">Pensée critique & analyse</li>
+                                <li class="lang-text" data-lang="en" style="display: none;">Critical thinking & analysis</li>
+                                
+                                <li class="lang-text" data-lang="fr">Communication scientifique</li>
+                                <li class="lang-text" data-lang="en" style="display: none;">Scientific communication</li>
+                                
+                                <li class="lang-text" data-lang="fr">Veille technologique</li>
+                                <li class="lang-text" data-lang="en" style="display: none;">Technology watch</li>
+                            </ul>
+                        </div>
+    
+                        <div class="skill-category">
+                            <h5 class="lang-text" data-lang="fr">Hard Skills</h5>
+                            <h5 class="lang-text" data-lang="en" style="display: none;">Hard Skills</h5>
+                            <ul>
+                                <li class="lang-text" data-lang="fr">Rédaction académique (IMRAD)</li>
+                                <li class="lang-text" data-lang="en" style="display: none;">Academic writing (IMRAD)</li>
+                                
+                                <li class="lang-text" data-lang="fr">Architectures neuromorphiques</li>
+                                <li class="lang-text" data-lang="en" style="display: none;">Neuromorphic architectures</li>
+                                
+                                <li class="lang-text" data-lang="fr">Mémoires émergentes (RRAM/PCM)</li>
+                                <li class="lang-text" data-lang="en" style="display: none;">Emerging memories (RRAM/PCM)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    

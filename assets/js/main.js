@@ -7,6 +7,7 @@ const projects = [
     { id: 'project-parking', file: 'assets/projects/project-parking.html' },
     { id: 'project-AI', file: 'assets/projects/project-AI.html' },
     { id: 'project-A8', file: 'assets/projects/project-A8.html' },
+    { id: 'project-research', file: 'assets/projects/project-research.html' },
 ];
 
 async function loadProjects() {
@@ -141,49 +142,62 @@ function updateTranslatableImages(lang) {
     });
 }
 
-// ========== LIGHTBOX AMÉLIORÉE AVEC NAVIGATION ==========
-let currentLightboxSlider = null;
-let currentLightboxIndex = 0;
-
-// Fonction pour ouvrir la lightbox
-function openLightbox(imgElement) {
+// ========== OUVRIR LA LIGHTBOX ==========
+function openLightbox(img) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
+
+    let imgSrc = img.src;
+    let imgAlt = img.alt;
+
+    if (img.classList.contains('img-translatable')) {
+        // Récupérer la langue active
+        const currentLang = document.querySelector('.lang-btn.active').dataset.lang;
+        
+        // Utiliser la bonne source selon la langue
+        imgSrc = img.dataset[`src${currentLang.charAt(0).toUpperCase() + currentLang.slice(1)}`] || img.src;
+        imgAlt = img.dataset[`alt${currentLang.charAt(0).toUpperCase() + currentLang.slice(1)}`] || img.alt;
+    }
+
+    lightboxImg.src = imgSrc;
+    lightboxImg.alt = imgAlt;
+
+    let captionText = '';
+    const parent = img.closest('.evidence-image, .slide');
     
-    // Détecter si l'image est dans un slider
-    const slider = imgElement.closest('.evidence-slider');
-    
+    if (parent) {
+        const captions = parent.querySelectorAll('.caption.lang-text, .caption .lang-text');
+        captions.forEach(caption => {
+            if (caption.style.display !== 'none') {
+                captionText = caption.textContent;
+            }
+        });
+    }
+
+    // Fallback sur l'alt si pas de légende
+    if (!captionText) {
+        captionText = imgAlt || '';
+    }
+
+    lightboxCaption.textContent = captionText;
+
+    // Détecter si on est dans un slider
+    const slider = img.closest('.evidence-slider');
     if (slider) {
         currentLightboxSlider = slider;
-        const slides = Array.from(slider.querySelectorAll('.slide'));
-        const activeSlide = slider.querySelector('.slide.active');
-        currentLightboxIndex = slides.indexOf(activeSlide);
-        
-        // Afficher les flèches
-        document.querySelector('.lightbox-prev').style.display = 'flex';
-        document.querySelector('.lightbox-next').style.display = 'flex';
+        const slides = slider.querySelectorAll('.slide');
+        slides.forEach((slide, index) => {
+            if (slide.querySelector('img') === img) {
+                currentLightboxIndex = index;
+            }
+        });
     } else {
         currentLightboxSlider = null;
-        // Cacher les flèches pour image seule
-        document.querySelector('.lightbox-prev').style.display = 'none';
-        document.querySelector('.lightbox-next').style.display = 'none';
     }
-    
-    lightboxImg.src = imgElement.src;
-    lightboxImg.alt = imgElement.alt;
-    
-    // Récupérer la caption active
-    const caption = imgElement.nextElementSibling;
-    if (caption && caption.classList.contains('caption')) {
-        const activeCaption = caption.querySelector('.lang-text:not([style*="display: none"])') || caption;
-        lightboxCaption.textContent = activeCaption.textContent;
-    } else {
-        lightboxCaption.textContent = '';
-    }
-    
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
+
+    lightbox.style.display = 'flex';
+    document.body.classList.add('modal-open');
 }
 
 // Fonction pour fermer la lightbox
