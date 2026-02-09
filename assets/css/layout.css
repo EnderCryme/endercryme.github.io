@@ -1,4 +1,8 @@
-/* ========== HERO ========== */
+/* ========================================
+   LAYOUT — Hero, Contact, Footer
+   ======================================== */
+
+/* ===== HERO ===== */
 #hero {
     min-height: 100vh;
     display: flex;
@@ -7,6 +11,9 @@
     align-items: center;
     padding: 2rem;
     position: relative;
+    background: 
+        radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        var(--bg-dark);
 }
 
 .hero-content {
@@ -14,126 +21,217 @@
     align-items: center;
     justify-content: center;
     gap: 4rem;
-    max-width: 1100px;
+    max-width: 1200px;
     width: 100%;
 }
 
 .hero-text {
     flex: 1;
-    max-width: 600px;
+    max-width: 650px;
 }
 
 .greeting {
     color: var(--accent);
     font-size: 1.1rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
 }
 
-h1 {
+.hero-text h1 {
     font-size: 3.5rem;
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, var(--text), var(--accent));
+    margin: 0.5rem 0;
+    background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .subtitle {
-    font-size: 1rem;
     color: var(--text-muted);
+    font-size: 1.1rem;
     margin-bottom: 0.75rem;
+    font-weight: 400;
 }
 
 .tagline {
-    font-size: 1.15rem;
-    font-weight: 600;
+    font-size: 1.05rem;
+    font-style: italic;
     color: var(--accent);
-    margin-bottom: 1rem;
-    line-height: 1.4;
+    margin: 0.75rem 0 1.25rem 0;
+    padding-left: 15px;
+    border-left: 3px solid var(--accent);
+    line-height: 1.6;
+    opacity: 0.9;
 }
 
-/* ========== HERO BIO ========== */
 .hero-bio {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    margin: 1rem 0;
+    gap: 10px;
+    margin-bottom: 1.25rem;
 }
 
 .bio-item {
     display: flex;
     align-items: flex-start;
-    gap: 0.6rem;
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    text-align: left;
+    gap: 12px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: border-color 0.3s ease;
+}
+
+.bio-item:hover {
+    border-color: rgba(34, 211, 238, 0.2);
 }
 
 .bio-icon {
+    font-size: 1.2rem;
     flex-shrink: 0;
-    font-size: 1rem;
-    margin-top: 1px;
+    margin-top: 2px;
 }
 
-/* ========== HERO BUTTONS ========== */
+.bio-item div {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.bio-item strong {
+    color: var(--text);
+}
+
+/* Award Badge */
+.award-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.02));
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.award-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #ffd700, #ffaa00);
+    border-radius: 4px 0 0 4px;
+}
+
+.award-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    animation: gentle-bounce 3s ease-in-out infinite;
+}
+
+.award-badge strong { color: #ffd700; }
+
+.award-badge span,
+.award-badge div {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.award-badge a {
+    color: var(--accent);
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+.award-badge a:hover {
+    color: #5ce1ff;
+    text-decoration: none;
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
 .hero-buttons {
     display: flex;
     gap: 1rem;
-    margin-top: 1.5rem;
     flex-wrap: wrap;
 }
 
-/* ========== HERO IMAGE / AVATAR ========== */
-.hero-image {
-    flex-shrink: 0;
-}
+/* Avatar */
+.hero-image { flex-shrink: 0; }
 
 .avatar-container {
     width: 280px;
     height: 280px;
     border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--accent);
-    box-shadow: 0 0 40px rgba(34, 211, 238, 0.2);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    padding: 5px;
+    animation: float 6s ease-in-out infinite;
     position: relative;
 }
 
 .avatar-container::after {
     content: '';
     position: absolute;
-    inset: -5px;
+    inset: -10px;
     border-radius: 50%;
-    border: 2px solid rgba(34, 211, 238, 0.15);
+    background: conic-gradient(
+        from 0deg,
+        var(--accent),
+        var(--primary),
+        var(--accent),
+        var(--primary),
+        var(--accent)
+    );
     z-index: -1;
+    opacity: 0.4;
+    animation: rotate-glow 8s linear infinite;
+    filter: blur(15px);
 }
 
 .avatar {
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     object-fit: cover;
-    display: block;
+    background: var(--bg-card);
 }
 
-/* ========== SCROLL INDICATOR ========== */
+@keyframes rotate-glow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
     bottom: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     color: var(--text-muted);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     animation: bounce 2s infinite;
 }
 
 .mouse {
     width: 24px;
-    height: 38px;
+    height: 40px;
     border: 2px solid var(--text-muted);
     border-radius: 12px;
     position: relative;
@@ -142,17 +240,39 @@ h1 {
 .mouse::before {
     content: '';
     position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 4px;
     height: 8px;
     background: var(--accent);
-    left: 50%;
-    transform: translateX(-50%);
-    top: 8px;
     border-radius: 2px;
-    animation: scroll-wheel 1.5s infinite;
+    animation: scroll-wheel 2s infinite;
 }
 
-/* ========== CONTACT ========== */
+@keyframes scroll-wheel {
+    0% { opacity: 1; top: 8px; }
+    100% { opacity: 0; top: 20px; }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* Animations de slide (utilisées par les cartes) */
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* ===== CONTACT ===== */
 #contact {
     padding: 6rem 2rem;
     text-align: center;
@@ -185,36 +305,11 @@ h1 {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* ========== FOOTER ========== */
+/* ===== FOOTER ===== */
 footer {
     text-align: center;
     padding: 2rem;
     color: var(--text-muted);
+    font-size: 0.85rem;
     border-top: 1px solid var(--timeline-line);
-}
-
-/* ========== ANIMATIONS ========== */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
-}
-
-@keyframes scroll-wheel {
-    0% { opacity: 1; top: 8px; }
-    100% { opacity: 0; top: 20px; }
-}
-
-@keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideInRight {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
 }
