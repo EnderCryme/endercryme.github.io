@@ -207,21 +207,9 @@ function initCloseOnClickOutside() {
 
 // ========== FONCTION FERMETURE ==========
 function closeProject(item) {
-    const card = item.querySelector('.timeline-content');
-    
-    // Animation de fermeture
-    card.style.animation = 'slideDown 0.3s ease forwards';
-    item.style.animation = 'fadeOutOverlay 0.3s ease forwards';
-    
-    setTimeout(() => {
-        item.classList.remove('expanded');
-        card.classList.remove('expanded');
-        document.body.classList.remove('modal-open');
-        
-        // Reset pour prochaine ouverture
-        card.style.animation = '';
-        item.style.animation = '';
-    }, 300);
+    item.classList.remove('expanded');
+    item.querySelector('.timeline-content').classList.remove('expanded');
+    document.body.classList.remove('modal-open');
 }
 
 // ========== SMOOTH SCROLL ==========
