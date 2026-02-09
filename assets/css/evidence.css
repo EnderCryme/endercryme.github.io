@@ -237,3 +237,42 @@
     color: var(--accent);
     font-weight: bold;
 }
+
+/* ========== LISTES DANS EVIDENCE TEXT ========== */
+.evidence-text ul {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    list-style: none;
+}
+
+.evidence-text ul li {
+    padding: 0.35rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.evidence-text ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.evidence-text strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.evidence-text p {
+    margin-bottom: 0.85rem;
+}
+
+.evidence-text p:last-child {
+    margin-bottom: 0;
+}
