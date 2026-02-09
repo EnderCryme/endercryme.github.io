@@ -176,9 +176,13 @@
     </footer>
 
     <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-        <div class="lightbox-caption" id="lightbox-caption"></div>
+        <span class="lightbox-close" onclick="closeLightbox()">×</span>
+        <span class="lightbox-prev" onclick="navigateLightbox(-1)">❮</span>
+        <span class="lightbox-next" onclick="navigateLightbox(1)">❯</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+        <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
     <script src="assets/js/main.js"></script>
