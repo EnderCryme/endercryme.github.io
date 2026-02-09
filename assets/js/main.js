@@ -203,12 +203,25 @@ function initCloseOnClickOutside() {
     });
 }
 
+
+
 // ========== FONCTION FERMETURE ==========
 function closeProject(item) {
     const card = item.querySelector('.timeline-content');
-    item.classList.remove('expanded');
-    card.classList.remove('expanded');
-    document.body.classList.remove('modal-open');
+    
+    // Animation de fermeture
+    card.style.animation = 'shrinkCard 0.3s ease forwards';
+    item.style.animation = 'fadeOutOverlay 0.3s ease forwards';
+    
+    setTimeout(() => {
+        item.classList.remove('expanded');
+        card.classList.remove('expanded');
+        document.body.classList.remove('modal-open');
+        
+        // Reset des animations pour la prochaine ouverture
+        card.style.animation = '';
+        item.style.animation = '';
+    }, 300);
 }
 
 // ========== SMOOTH SCROLL ==========
