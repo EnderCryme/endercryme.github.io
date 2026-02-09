@@ -1,13 +1,4 @@
-/* ========================================
-   COMPOSANTS RÉUTILISABLES
-   ======================================== */
-
-/* --- Icons SVG --- */
-.icon { width: 18px; height: 18px; fill: currentColor; }
-.icon-sm { width: 14px; height: 14px; }
-.icon-lg { width: 24px; height: 24px; }
-
-/* --- Lang Switch --- */
+/* ========== LANG SWITCH ========== */
 .lang-switch {
     position: fixed;
     top: 20px;
@@ -38,92 +29,111 @@
     color: var(--accent);
 }
 
-.lang-separator { color: #555; }
+.lang-separator {
+    color: #555;
+}
 
-/* --- Buttons --- */
+/* ========== BOUTONS GÉNÉRAUX ========== */
 .btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.875rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
     font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
     border: none;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--primary);
     color: white;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
 .btn-primary:hover {
+    background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
 }
 
 .btn-secondary {
     background: transparent;
     color: var(--text);
-    border: 2px solid var(--timeline-line);
+    border: 1px solid var(--timeline-line);
 }
 
 .btn-secondary:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.btn-small {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    background: var(--primary);
-    color: white;
-}
-
-.btn-small:hover {
-    background: var(--primary-dark);
+    border-color: var(--accent);
+    color: var(--accent);
     transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 1.1rem;
+}
+
+/* ========== TAGS ========== */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.tag {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* ========== BOUTONS DE CARTE ========== */
+.card-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
 }
 
 .btn-expand {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--primary);
     color: white;
     border: none;
-    padding: 0.6rem 1.2rem;
+    padding: 8px 20px;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
 .btn-expand:hover {
+    background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
 }
 
 .btn-github {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: transparent;
-    color: var(--text);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0.6rem 1.2rem;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--timeline-line);
     border-radius: 8px;
-    text-decoration: none;
+    color: var(--text);
     font-size: 0.85rem;
+    text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .btn-github:hover {
     border-color: var(--accent);
     color: var(--accent);
+    transform: translateY(-2px);
 }
 
 .btn-video {
@@ -146,174 +156,25 @@
     transform: translateY(-2px);
 }
 
-.btn-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: var(--text);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-}
-
-.btn-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.card-buttons {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-
-/* --- Tags --- */
-.tag {
-    background: rgba(99, 102, 241, 0.2);
-    color: var(--primary);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-/* --- Award (dans les cartes projet) --- */
-.award {
-    background: rgba(34, 211, 238, 0.1);
-    color: var(--accent);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-    border-left: 3px solid var(--accent);
-}
-
-.award a {
-    color: var(--accent);
-    text-decoration: underline;
-    transition: all 0.3s ease;
-}
-
-.award a:hover {
-    color: #5ce1ff;
-    text-decoration: none;
-}
-
-/* --- Section Titles --- */
+/* ========== SECTION TITLE ========== */
 .section-title {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 4rem;
-}
-
-/* --- Tech Highlight --- */
-.tech-highlight {
-    background: rgba(0, 212, 255, 0.05);
-    border-left: 3px solid var(--accent);
-    padding: 1.25rem;
-    margin: 1rem 0;
-    border-radius: 0 12px 12px 0;
-}
-
-.tech-highlight.warning {
-    background: rgba(255, 193, 7, 0.08);
-    border-left-color: #ffc107;
-}
-
-/* --- Architecture Grid --- */
-.architecture-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
-}
-
-.arch-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 1.25rem;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.arch-item:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: var(--accent);
-    transform: translateY(-3px);
-}
-
-.arch-icon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 0.75rem;
-}
-
-.arch-item strong {
-    display: block;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-}
-
-.arch-item p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin: 0;
-}
-
-/* --- Skills Grid --- */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin: 1.5rem 0;
-}
-
-.skill-category h5 {
-    color: var(--accent);
-    margin: 0 0 0.75rem 0;
-    font-size: 0.95rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.skill-category ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.skill-category li {
-    padding: 0.35rem 0;
-    padding-left: 1.25rem;
     position: relative;
-    color: var(--text-muted);
-    font-size: 0.9rem;
 }
 
-.skill-category li::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-weight: bold;
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
-/* --- Macro Links --- */
+/* ========== MACRO LINKS ========== */
 .macro a {
     color: var(--accent);
     text-decoration: none;
@@ -323,4 +184,29 @@
 
 .macro a:hover {
     border-bottom-color: var(--accent);
+}
+
+/* ========== AWARD ========== */
+.award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px 14px;
+    background: rgba(255, 215, 0, 0.08);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 10px;
+    margin: 1rem 0;
+    font-size: 0.88rem;
+    color: #ffd700;
+}
+
+.award-badge a {
+    color: var(--accent);
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+.award-badge a:hover {
+    color: #5ce1ff;
+    text-decoration: none;
 }
