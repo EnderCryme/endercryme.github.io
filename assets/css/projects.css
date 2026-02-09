@@ -2,6 +2,16 @@
    CARTES PROJETS & EXPANSION
    ======================================== */
 
+/* --- État par défaut : détails cachés --- */
+.project-details {
+    display: none;
+}
+
+/* --- État expanded : détails visibles --- */
+.timeline-item.expanded .project-details {
+    display: block;
+}
+
 /* --- Carte fermée --- */
 .timeline-content {
     background: var(--bg-card);
