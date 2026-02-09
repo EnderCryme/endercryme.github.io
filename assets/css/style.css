@@ -1150,3 +1150,147 @@ code {
     .prev { left: 10px; }
     .next { right: 10px; }
 }
+
+/* ========== HERO REDESIGN ========== */
+
+/* Tagline — La phrase d'accroche isolée et mise en valeur */
+.tagline {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--accent);
+    margin: 1rem 0 1.5rem 0;
+    padding-left: 15px;
+    border-left: 3px solid var(--accent);
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+/* Bio structurée avec icônes */
+.hero-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.bio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: border-color 0.3s ease;
+}
+
+.bio-item:hover {
+    border-color: rgba(34, 211, 238, 0.2);
+}
+
+.bio-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.bio-item div {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.bio-item strong {
+    color: var(--text);
+}
+
+/* Award Badge — Bandeau distinctif */
+.award-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.02));
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.award-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #ffd700, #ffaa00);
+    border-radius: 4px 0 0 4px;
+}
+
+.award-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    animation: gentle-bounce 3s ease-in-out infinite;
+}
+
+.award-badge strong {
+    color: #ffd700;
+}
+
+.award-badge span,
+.award-badge div {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Avatar glow amélioré */
+.avatar-container {
+    position: relative;
+}
+
+.avatar-container::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        var(--accent),
+        var(--primary),
+        var(--accent),
+        var(--primary),
+        var(--accent)
+    );
+    z-index: -1;
+    opacity: 0.5;
+    animation: rotate-glow 8s linear infinite;
+    filter: blur(12px);
+}
+
+@keyframes rotate-glow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .bio-item {
+        padding: 10px 12px;
+    }
+
+    .award-badge {
+        padding: 12px 14px;
+    }
+}
+
