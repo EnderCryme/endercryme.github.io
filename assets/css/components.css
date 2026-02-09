@@ -116,34 +116,14 @@
     transform: translateY(-2px);
 }
 
-.btn-github {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--timeline-line);
-    border-radius: 8px;
-    color: var(--text);
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.btn-github:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-}
-
 /* ========== BOUTONS VIDÉO & DOCUMENTS ========== */
 .btn-video,
+.btn-github,
 .btn-doc {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--timeline-line);
     border-radius: 8px;
     color: var(--text);
@@ -152,12 +132,34 @@
     transition: all 0.3s ease;
 }
 
+.btn-github,
+.btn-doc {
+    background: rgba(255, 255, 255, 0.05)
+}
+
+.btn-video {
+    background: rgba(255, 0, 0, 0.15);
+    color: #ff6b6b;
+}
+
+.btn-github:hover,
 .btn-video:hover,
 .btn-doc:hover {
+    transform: translateY(-2px);
+}
+
+/* Couleurs spécifiques au hover */
+.btn-doc:hover,
+.btn-github:hover {
     border-color: var(--accent);
     color: var(--accent);
-    transform: translateY(-2px);
     background: rgba(34, 211, 238, 0.1);
+}
+
+.btn-video:hover {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
 }
 
 /* Icônes spécifiques */
