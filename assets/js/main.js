@@ -252,3 +252,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     console.log('OK - Initialisation terminée');
 });
+
+// ========== SCROLL FADE INDICATOR ==========
+// Masque le dégradé du bas quand on atteint la fin du contenu
+document.addEventListener('scroll', function(e) {
+    const expanded = document.querySelector('.timeline-item.expanded');
+    if (!expanded) return;
+    
+    const scrollTop = expanded.scrollTop;
+    const scrollHeight = expanded.scrollHeight;
+    const clientHeight = expanded.clientHeight;
+    
+    // Si on est proche du bas (à 80px près)
+    if (scrollHeight - scrollTop - clientHeight < 80) {
+        expanded.classList.add('scroll-end');
+    } else {
+        expanded.classList.remove('scroll-end');
+    }
+}, true);
