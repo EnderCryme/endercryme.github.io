@@ -5,10 +5,11 @@ let slideIndices = {}; // Pour gérer les sliders
 // ========== CHARGEMENT DES PROJETS ==========
 const projects = [
     { id: 'project-parking', file: 'assets/projects/project-parking.html' },
+    { id: 'project-research', file: 'assets/projects/project-research.html' }, 
     { id: 'project-AI', file: 'assets/projects/project-AI.html' },
     { id: 'project-A8', file: 'assets/projects/project-A8.html' },
-    { id: 'project-research', file: 'assets/projects/project-research.html' },
 ];
+
 
 async function loadProjects() {
     console.log('Chargement des projets...');
