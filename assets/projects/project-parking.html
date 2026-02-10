@@ -49,36 +49,53 @@
 
                 <!-- ===== BLOC 1 : Architecture de Puissance & BMS ===== -->
                 <div class="detail-block">
-                    <h4 class="lang-text" data-lang="fr"> Architecture de Puissance & BMS (KiCad)</h4>
-                    <h4 class="lang-text" data-lang="en" style="display: none;"> Power Architecture & BMS (KiCad)</h4>
+                    <h4>
+                        <span class="lang-text" data-lang="fr">
+                            Architecture de Puissance & BMS
+                            <span class="role-badge">Conception Lead</span>
+                        </span>
+                        <span class="lang-text" data-lang="en" style="display: none;">
+                            Power Architecture & BMS
+                            <span class="role-badge">Lead Design</span>
+                        </span>
+                    </h4>
 
                     <div class="evidence-container">
                         <div class="evidence-text">
                             <div class="lang-text" data-lang="fr">
-                                <p><strong>Contexte & Défi :</strong> Alimenter une architecture hétérogène (FPGA, CPU IA, Moteurs 20V) nécessitant <strong>65W constants</strong>, avec une autonomie cible de <strong>2h</strong>.</p>
+                                <p><strong>Contexte & Défi :</strong> Alimenter une architecture hétérogène (FPGA, CPU IA, Moteurs 20V) consommant de <strong>15W (repos) à 65W (pleine charge)</strong>, avec un objectif d'autonomie <strong>> 2h</strong>.</p>
                                 
                                 <p><strong>Conception Hardware :</strong> Réalisation sous <strong>KiCad 7</strong> d'un BMS 4S3P (Cellules <strong>Samsung INR18650-35E</strong>). Architecture <strong>NVDC</strong> (Narrow Voltage DC) implémentée avec le trio Texas Instruments :</p>
                                 <ul>
                                     <li>Chargeur Buck-Boost <strong>BQ25713</strong> (gestion USB-C PD 100W)</li>
-                                    <li>Jauge <strong>BQ40Z50</strong> (algorithme Impedance Track™)</li>
-                                    <li>Protection Secondaire <strong>BQ296102</strong></li>
+                                    <li>Jauge & Équilibrage 4SXP <strong>BQ40Z50</strong> (algorithme Impedance Track™)</li>
+                                    <li>Secondaire Protection de Sur-Tension <strong>BQ296102</strong></li>
+                                    <li>Protection tertiaire par fusibles (3A) et logique d'activation des sorties</li>
                                 </ul>
                                 
-                                <p><strong>Intelligence Embarquée :</strong> Intégration stratégique d'un <strong>RP2350</strong> pour le monitoring et le calcul d'Indice de Performance (IPN). Choisi pour son ratio performance/prix supérieur au STM32 (IPN ~<strong>8500 vs ~444</strong>) pour cette tâche de supervision.</p>
+                                <p>
+                                    <strong>Intelligence Embarquée :</strong> Intégration d'un <strong>RP2350</strong> pour la supervision du BMS. 
+                                    Sélectionné pour son ratio performance/coût (Cœurs, Fréquence, I/O) supérieur aux standards STM32 
+                                    (IPN ~<strong>8500 vs ~444</strong>).
+                                </p>
                             </div>
 
                             <div class="lang-text" data-lang="en" style="display: none;">
-                                <p><strong>Context & Challenge:</strong> Powering a heterogeneous architecture (FPGA, AI CPU, 20V Motors) requiring <strong>65W constant load</strong>, with a <strong>2h autonomy</strong> target.</p>
+                                <p><strong>Context & Challenge:</strong> Powering a heterogeneous architecture (FPGA, AI CPU, 20V Motors) requiring <strong>from 15W (idle) to 65W (heavy load)</strong>, with a target autonomy of <strong>> 2h</strong>.</p>
                                 
                                 <p><strong>Hardware Design:</strong> Designed a 4S3P BMS (<strong>Samsung INR18650-35E</strong> cells) using <strong>KiCad 7</strong>. Implemented an <strong>NVDC</strong> (Narrow Voltage DC) architecture with the Texas Instruments trio:</p>
                                 <ul>
                                     <li>Buck-Boost Charger <strong>BQ25713</strong> (100W USB-C PD management)</li>
-                                    <li>Fuel Gauge <strong>BQ40Z50</strong> (Impedance Track™ algorithm)</li>
-                                    <li>Secondary Protection <strong>BQ296102</strong></li>
+                                    <li>Fuel Gauge & Balancing 4SXP <strong>BQ40Z50</strong> (Impedance Track™ algorithm)</li>
+                                    <li>Secondary Overvoltage Protection <strong>BQ296102</strong></li>
+                                    <li>Tertiary protection via fuses (3A) and output activation logic</li>
                                 </ul>
                                 
-                                <p><strong>Embedded Intelligence:</strong> Strategic integration of an <strong>RP2350</strong> for monitoring and Performance Index (IPN) calculation. Selected for its superior price/performance ratio compared to STM32 (IPN ~<strong>8500 vs ~444</strong>) for this supervision task.</p>
-                            </div>
+                                <p>
+                                    <strong>Embedded Intelligence:</strong> Integration of an <strong>RP2350</strong> for BMS monitoring and control. 
+                                    Selected for its superior performance-to-price ratio (Cores, Clock, I/O) compared to STM32 standards 
+                                    (IPN ~<strong>8500 vs ~444</strong>).
+                                </p></div>
                         </div>
 
                         <div class="evidence-slider" id="bms-slider">

@@ -227,3 +227,27 @@
     color: #5ce1ff;
     text-decoration: none;
 }
+
+/* Badge de contribution personnelle */
+.role-badge {
+    display: inline-block;
+    font-size: 0.75rem; /* Plus petit que le titre */
+    background: rgba(34, 211, 238, 0.15); /* Fond transparent teinté */
+    color: var(--accent); /* Couleur Cyan */
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(34, 211, 238, 0.4);
+    margin-left: 12px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Ajustement mobile pour que le badge passe à la ligne si besoin */
+@media (max-width: 768px) {
+    .role-badge {
+        display: table;
+        margin: 5px 0 0 0;
+    }
+}
