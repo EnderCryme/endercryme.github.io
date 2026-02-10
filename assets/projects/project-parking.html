@@ -63,7 +63,7 @@
                     <div class="evidence-container">
                         <div class="evidence-text">
                             <div class="lang-text" data-lang="fr">
-                                <p><strong>Contexte & Défi :</strong> Alimenter une architecture hétérogène (FPGA, CPU IA, Moteurs 20V) consommant de <strong>15W (repos) à 65W (pleine charge)</strong>, avec un objectif d'autonomie <strong>> 2h</strong>.</p>
+                                <p><strong>Contexte & Défi :</strong> Alimenter une architecture hétérogène (FPGA, STM32, BeagleY-AI, Moteurs 20V) consommant de <strong>15W (repos) à 65W (pleine charge)</strong>, avec un objectif d'autonomie <strong>> 2h</strong>.</p>
                                 
                                 <p><strong>Conception Hardware :</strong> Réalisation sous <strong>KiCad 7</strong> d'un BMS 4S3P (Cellules <strong>Samsung INR18650-35E</strong>). Architecture <strong>NVDC</strong> (Narrow Voltage DC) implémentée avec le trio Texas Instruments :</p>
                                 <ul>
@@ -76,12 +76,12 @@
                                 <p>
                                     <strong>Intelligence Embarquée :</strong> Intégration d'un <strong>RP2350</strong> pour la supervision du BMS. 
                                     Sélectionné pour son ratio performance/coût (Cœurs, Fréquence, I/O) supérieur aux standards STM32 
-                                    (IPN ~<strong>8500 vs ~444</strong>).
+                                    (IPN ~<strong>8500 RP2350</strong> vs </strong>~444 STM32</strong>).
                                 </p>
                             </div>
 
                             <div class="lang-text" data-lang="en" style="display: none;">
-                                <p><strong>Context & Challenge:</strong> Powering a heterogeneous architecture (FPGA, AI CPU, 20V Motors) requiring <strong>from 15W (idle) to 65W (heavy load)</strong>, with a target autonomy of <strong>> 2h</strong>.</p>
+                                <p><strong>Context & Challenge:</strong> Powering a heterogeneous architecture (FPGA, STM32, BeagleY-AI, 20V Motors) requiring <strong>from 15W (idle) to 65W (heavy load)</strong>, with a target autonomy of <strong>> 2h</strong>.</p>
                                 
                                 <p><strong>Hardware Design:</strong> Designed a 4S3P BMS (<strong>Samsung INR18650-35E</strong> cells) using <strong>KiCad 7</strong>. Implemented an <strong>NVDC</strong> (Narrow Voltage DC) architecture with the Texas Instruments trio:</p>
                                 <ul>
@@ -94,7 +94,7 @@
                                 <p>
                                     <strong>Embedded Intelligence:</strong> Integration of an <strong>RP2350</strong> for BMS monitoring and control. 
                                     Selected for its superior performance-to-price ratio (Cores, Clock, I/O) compared to STM32 standards 
-                                    (IPN ~<strong>8500 vs ~444</strong>).
+                                    (IPN ~<strong>8500 RP2350</strong> vs </strong>~444 STM32</strong>).
                                 </p></div>
                         </div>
 
@@ -119,25 +119,45 @@
 
                 <!-- ===== BLOC 2 : FPGA & SoC RISC-V ===== -->
                 <div class="detail-block">
-                    <h4 class="lang-text" data-lang="fr"> FPGA & SoC RISC-V (LiteX)</h4>
-                    <h4 class="lang-text" data-lang="en" style="display: none;"> FPGA & RISC-V SoC (LiteX)</h4>
+                    <h4>
+                        <span class="lang-text" data-lang="fr">
+                            FPGA & SoC RISC-V (LiteX)
+                            <span class="role-badge" style="color: #ff6b6b; border-color: rgba(255, 107, 107, 0.4); background: rgba(255, 107, 107, 0.1);">
+                                Déploiement Express (J-7)
+                            </span>
+                        </span>
+                        <span class="lang-text" data-lang="en" style="display: none;">
+                            FPGA & RISC-V SoC (LiteX)
+                            <span class="role-badge" style="color: #ff6b6b; border-color: rgba(255, 107, 107, 0.4); background: rgba(255, 107, 107, 0.1);">
+                                Fast-Track Deployment (D-7)
+                            </span>
+                        </span>
+                    </h4>
 
                     <div class="evidence-container">
                         <div class="evidence-text">
                             <div class="lang-text" data-lang="fr">
-                                <p><strong>Objectif :</strong> Piloter des barrières motorisées (Moteurs Pas-à-pas <strong>NEMA</strong>) avec une précision temps réel tout en conservant la flexibilité d'un OS haut niveau.</p>
-                                
+                                <p><strong>Objectif :</strong> Piloter des barrières motorisées (Moteurs Pas-à-pas <strong>Adafruit + ULN2003</strong>) avec une précision temps réel tout en conservant la flexibilité d'un OS haut niveau.</p>
+                
+                                <p style="border-left: 3px solid #ff6b6b; padding-left: 12px; background: rgba(255, 107, 107, 0.05); border-radius: 0 4px 4px 0; font-size: 0.9em;">
+                                    <strong>Challenge (J-7) :</strong> Pivot stratégique suite à une impasse technique. Conception intégrale du SoC, du driver C (DMA) et de l'interface MQTT en une semaine pour garantir la livraison.
+                                </p>
+                
                                 <p><strong>Implémentation SoC :</strong> Déploiement d'un Softcore <strong>VexRiscv</strong> (32-bit RISC-V) sur FPGA <strong>Nexys A7-100T</strong> via la toolchain <strong>LiteX</strong>. Intégration d'un bus <strong>AXI</strong> pour la communication entre le CPU et les périphériques custom.</p>
-                                
+                
                                 <p><strong>Linux & Drivers :</strong> Compilation d'un noyau <strong>Linux embarqué</strong> via <strong>Buildroot</strong>. Développement d'un driver spécifique utilisant le mapping mémoire (<code>mmap</code>) pour contrôler directement les registres matériels des moteurs depuis l'espace utilisateur Linux, contournant les latences classiques.</p>
                             </div>
-
+                
                             <div class="lang-text" data-lang="en" style="display: none;">
-                                <p><strong>Objective:</strong> Controlling motorized barriers (<strong>NEMA</strong> Stepper Motors) with real-time precision while maintaining high-level OS flexibility.</p>
-                                
-                                <p><strong>SoC Implementation:</strong> Deployed a <strong>VexRiscv</strong> Softcore (32-bit RISC-V) on <strong>Nexys A7-100T</strong> FPGA using the <strong>LiteX</strong> toolchain. Integrated an <strong>AXI bus</strong> for communication between CPU and custom peripherals.</p>
-                                
-                                <p><strong>Linux & Drivers:</strong> Compiled an <strong>embedded Linux</strong> kernel via <strong>Buildroot</strong>. Developed a specific driver using memory mapping (<code>mmap</code>) to directly control motor hardware registers from Linux user space, bypassing standard latency issues.</p>
+                                <p><strong>Objective:</strong> Controlling motorized barriers (<strong>Adafruit + ULN2003</strong> Stepper Motors) with real-time precision while maintaining high-level OS flexibility.</p>
+                
+                                <p style="border-left: 3px solid #ff6b6b; padding-left: 12px; background: rgba(255, 107, 107, 0.05); border-radius: 0 4px 4px 0; font-size: 0.9em;">
+                                    <strong>Challenge (D-7):</strong> Strategic pivot following a technical deadlock. Full design of the SoC, C driver (DMA), and MQTT interface completed in one week to ensure delivery.
+                                </p>
+                
+                                <p><strong>SoC Implementation:</strong> Deployment of a <strong>VexRiscv</strong> Softcore (32-bit RISC-V) on <strong>Nexys A7-100T</strong> FPGA using the <strong>LiteX</strong> toolchain. Integration of an <strong>AXI bus</strong> for communication between the CPU and custom peripherals.</p>
+                
+                                <p><strong>Linux & Drivers:</strong> Compilation of an <strong>embedded Linux</strong> kernel via <strong>Buildroot</strong>. Development of a specific driver using memory mapping (<code>mmap</code>) to directly control motor hardware registers from Linux user space, bypassing standard latencies.</p>
                             </div>
                         </div>
                         <div class="evidence-image">
